@@ -7,18 +7,27 @@
 Tree::Tree(){}
 
 Tree::Tree(int root){
-    treeNode s;
-    s.node = root;
+    treeNode* r;
+    r.node = root;
 }
 
 
-void addNode(int node, treeNode* father){
+treeNode* getRoot(){
+    return this->r
+}
+
+void addDescendant(treeNode* father, treeNode child){
+    father.children.push_back(child);
+}
+
+treeNode* addNode(int node, treeNode* father){
 
     treeNode new_node;
     new_node.node = node;
     new_node.father = father;
+    this->addDescendant(father, new_node);
+    return &new_node;
 }
-
 
 void computeDescendants(treeNode node){
     if(!node.children.empty()){

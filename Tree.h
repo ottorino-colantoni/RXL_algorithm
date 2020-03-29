@@ -28,7 +28,11 @@ public:
 
     Tree(int root);
 
-    void addNode(int node, treeNode* father);
+    treeNode* getRoot();
+
+    treeNode* addNode(int node, treeNode* father);
+
+    void addDescendant(treeNode* father, treeNode* child);
 
     void computeDescendants();
 
