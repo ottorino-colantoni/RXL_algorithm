@@ -2,24 +2,26 @@
 // Created by f4b3r on 28/03/20.
 //
 
-#ifndef EXAMPLE_TREE_H
-#define EXAMPLE_TREE_H
 
-#endif //EXAMPLE_TREE_H
+#include <vector>
 
 struct treeNode{
     int node;
     treeNode *father;
-    Vector<treeNode*> children;
+    std::vector<treeNode*> children;
     int num_of_descendants;
 };
+
+
+#ifndef TREE_H
+#define TREE_H
 
 
 class Tree{
 
 private:
 
-    treeNode root;
+    treeNode treeRoot;
 
 
 public:
@@ -30,15 +32,19 @@ public:
 
     treeNode* getRoot();
 
-    treeNode* addNode(int node, treeNode* father);
+    void addNode(treeNode* node, treeNode* father);
 
-    void addDescendant(treeNode* father, treeNode* child);
+    //void addDescendant(treeNode* father, treeNode* child);
 
-    void computeDescendants();
+    void computeDescendants(treeNode* node);
 
-    void removeSubtree(int node);
+    //void removeSubtree(int node);
 
-    void removeChild(treeNode* father, treeNode* child);
+    void removeChild(treeNode* child);
 
     void updateFather(treeNode* father, treeNode* child);
+
+    void printTree(treeNode* root);
 };
+
+#endif //EXAMPLE_TREE_H
