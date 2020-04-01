@@ -13,10 +13,12 @@ Tree::Tree(){}
 
 
 //funziona
-Tree::Tree(int source){
+Tree::Tree(int source, int size){
     treeNode r;
-    r.node=source;
+    r.node = source;
+    r.father = NULL;
     this->treeRoot = r;
+    this->desc_vect.resize(size);
 }
 
 
@@ -26,6 +28,10 @@ treeNode* Tree::getRoot(){
     return &treeRoot;
 }
 
+std::vector<int> Tree::getDescVect(){
+    return this->desc_vect;
+}
+
 
 
 //funziona
@@ -33,7 +39,26 @@ void Tree::addNode(treeNode* node, treeNode* father){
 
     node->father = father;
     father->children.push_back(node);
+    encreaseDescendants(node);
 }
+
+void Tree::encreaseDescendants(treeNode* node){
+    if(node->father != NULL){ // se il nodo non è la radice, cioè non ha un genitore
+        node->father->num_of_descendants += 1;
+        this->desc_vect[node->father->node] = node->father->num_of_descendants;
+        encreaseDescendants(node->father);
+    }
+}
+
+void Tree::decreaseDescendants(treeNode* node){
+    if(node->father != NULL){
+        node->father->num_of_descendants -= 1;
+        this->desc_vect[node->father->node] = node->father->num_of_descendants;
+        decreaseDescendants(node->father);
+    }
+}
+
+
 
 
 //funziona
@@ -59,6 +84,7 @@ void Tree::removeChild(treeNode* child){
         for (int i = 0; i < size; i++) {
             if (child->node == child->father->children[i]->node){
                 child->father->children.erase(child->father->children.begin()+i);
+                decreaseDescendants(child);
                 child->father = NULL;
                 break;
             }
@@ -75,6 +101,7 @@ void Tree::updateFather(treeNode* father, treeNode* child){
     removeChild(child);
     child->father = father;
     father->children.push_back(child);
+    encreaseDescendants(child);
 }
 
 

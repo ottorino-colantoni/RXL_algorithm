@@ -9,7 +9,7 @@ struct treeNode{
     int node;
     treeNode *father;
     std::vector<treeNode*> children;
-    int num_of_descendants;
+    int num_of_descendants = 0;
 };
 
 
@@ -22,15 +22,22 @@ class Tree{
 private:
 
     treeNode treeRoot;
-
+    std::vector<int> desc_vect;
 
 public:
 
+
     Tree();
 
-    Tree(int root);
+    Tree(int root, int size);
 
     treeNode* getRoot();
+
+    std::vector<int> getDescVect();
+
+    void encreaseDescendants(treeNode* node);
+
+    void decreaseDescendants(treeNode* node);
 
     void addNode(treeNode* node, treeNode* father);
 
