@@ -4,6 +4,7 @@
 
 
 #include <vector>
+#include <iostream>
 
 struct treeNode{
     int node;
@@ -52,6 +53,12 @@ public:
     void updateFather(treeNode* father, treeNode* child);
 
     void printTree(treeNode* root);
+
+    treeNode* DFS(int node);
+
+    void removeSubTree(treeNode* root);
+
+    void deleteSubTree(treeNode* root);
 };
 
 #endif //EXAMPLE_TREE_H

@@ -26,6 +26,8 @@ public:
     void createForest(NetworKit::Graph* graph);
 
     int maxDescNode();
+	
+    void encreaseForest(int Samples,NetworKit::Graph* graph);
 
 };
 

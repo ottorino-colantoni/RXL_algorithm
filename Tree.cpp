@@ -4,6 +4,7 @@
 
 #include "Tree.h"
 #include <iostream>
+//#include </usr/lib/include/boost/lockfree/queque.hpp>
 
 
 
@@ -121,24 +122,88 @@ void Tree::printTree(treeNode* root){
 }
 
 
-/*int main(){
+treeNode* Tree::DFS(int node){
 
-    Tree* t = new Tree(5);
-    treeNode* root = t->getRoot();
-    std::vector<treeNode> nodes;
-    for(int i = 0; i<10; i++){
-        treeNode n;
-        n.node = i;
-        nodes.push_back(n);
-        t->addNode(&nodes[i], root);
-    }
-    for(int i = 0; i<root->children.size(); i++){
-        std::cout<<root->children[i]->node<<"\n";
-    }
-    t->removeChild(&nodes[5]);
-    for(int i = 0; i<root->children.size(); i++){
-        std::cout<<root->children[i]->node<<"\n";
-    }
+	bool trovato= false;
+	treeNode* selectedNode;
+	/*boost::lockfree::queque<treeNode*> queque;
+	queque.push(this->getRoot());
+	
+	while(! queque.empty() & !trovato){
+		queque.pop(selectedNode);
+
+		if(selectedNode->node = node){
+			break;
+		}
+		else{
+			for(int i=0;i<selectedNode->children.size();i++){
+
+				queque.push(selectedNode->children[i]);
+		
+			}
+
+		}
+	
+	}*/
+
+	//out of cicle
+	return selectedNode;
+
+
 }
 
-*/
+// va richiamata sui figli non sul nodo altrimenti lo elimina
+void Tree::removeSubTree(treeNode* root){
+
+ 	if(!root->children.empty()){
+        for(int i = 0; i<root->children.size(); i++){
+            removeSubTree(root->children[i]);
+        }
+        }
+
+	std::cout << "cancello il nodo" << root->node <<"\n";
+	delete root;
+		
+}
+
+// va richiamata sul nodo radice del sottoalbero
+void Tree::deleteSubTree(treeNode* root){
+
+	for(int i=0;i<root->children.size();i++)
+        {
+	removeSubTree(root->children[i]);
+		
+	}
+	root->children.resize(0);
+}
+
+
+int main(){
+
+    Tree* t = new Tree(5,5);
+    treeNode* root = t->getRoot();
+    std::vector<treeNode*> nodes;
+    for(int i = 0; i<10; i++){
+        treeNode* n= new treeNode();
+        n->node = i;
+        nodes.push_back(n);
+        t->addNode(nodes[i], root);
+    }
+		
+	treeNode* n= new treeNode();
+        n->node = 50;
+        t->addNode(n, nodes[2]);
+	std::cout<< "prima \n";
+        t->printTree(t->getRoot());
+	
+	t->deleteSubTree(t->getRoot());
+	
+	
+	std::cout<< "dopo \n";
+    t->printTree(t->getRoot());
+
+
+
+}
+
+

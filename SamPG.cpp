@@ -26,6 +26,30 @@ int SamPG::maxDescNode(){
             counters[j] += this->samplesForest[i]->getDescVect()[j];
         }
     }
-    return std::max_element(counters.begin(), counters.end());
+
+    int roundNode = 0;
+    for(int y=1;y<counters.size();t++){
+	if(counters[y-1]<counters[y]){
+	roundNode=y;
+	}	
+    }
+
+	return roundNode;
 }
+
+// Funzione per incrementare il numero di alberi campionati.  | Serve una versione di dijkstra modificata |
+
+/*  void SamPG::encreaseForest(int Samples, NetworKit::Graph* graph){
+
+
+    MersenneTwister random;
+    Dijkstra* dijkstra;
+    for(int i = 0; i<this->Samples; i++){
+        this->samplesForest.push_back(new Tree(random.getRandomInteger() % graph->numberOfNodes(), graph->numberOfNodes()));
+        dijkstra->runDijkstra(samplesForest.back(), graph);
+    }
+	this->num_samples += Samples;
+
+} */
+
 
