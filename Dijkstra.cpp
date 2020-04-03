@@ -10,7 +10,7 @@
 Dijkstra::Dijkstra() {};
 
 
-void Dijkstra::runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph) {
+void Dijkstra::runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph, bool pruned = false, Labeling* index = nullptr) {
 
     boost::heap::fibonacci_heap<heap_data>* pq = new boost::heap::fibonacci_heap<heap_data>();
     boost::heap::fibonacci_heap<heap_data>::handle_type* handles =
@@ -37,6 +37,11 @@ void Dijkstra::runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph) {
         int distance = pq->top().prio;
         //rimozione elemento dallo heap
         pq->pop();
+        if(pruned){
+            if(index->query(source, current) <= distance){
+                continue;
+            }
+        }
         graph->forNeighborsOf(current, [&](int v) {
             wuv = graph -> weight(current,v);
             if(distances[v] == INF) {

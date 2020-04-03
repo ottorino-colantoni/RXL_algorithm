@@ -6,14 +6,14 @@
  */
 
 #include "Auxiliary.h"
-#include "NetworKit/components/ConnectedComponents.h"
-#include "NetworKit/components/StronglyConnectedComponents.h"
-#include "NetworKit/generators/ErdosRenyiGenerator.h"
-#include "NetworKit/generators/BarabasiAlbertGenerator.cpp"
+#include "networkit/components/ConnectedComponents.hpp"
+#include "networkit/components/StronglyConnectedComponents.hpp"
+#include "networkit/generators/ErdosRenyiGenerator.hpp"
+#include "networkit/generators/BarabasiAlbertGenerator.hpp"
 #include <unordered_set>
 #include <tuple>
 #include <boost/algorithm/string.hpp>
-#include <NetworKit/centrality/EstimateBetweenness.h>
+#include <networkit/centrality/EstimateBetweenness.hpp>
 
 Auxiliary::Auxiliary() {}
 

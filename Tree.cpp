@@ -178,7 +178,7 @@ void Tree::deleteSubTree(treeNode* root){
 }
 
 
-int main(){
+/*int main(){
 
     Tree* t = new Tree(5,5);
     treeNode* root = t->getRoot();
@@ -204,6 +204,6 @@ int main(){
 
 
 
-}
+}*/
 
 

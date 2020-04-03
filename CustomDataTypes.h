@@ -17,15 +17,15 @@
 #include "mersenneTwister.h"
 #include "progressBar.h"
 #include "UpdateData.h"
-#include <NetworKit/io/KONECTGraphReader.h>
-#include <NetworKit/io/SNAPGraphReader.h>
-#include <NetworKit/dynamics/GraphEvent.h>
-#include <NetworKit/dynamics/GraphUpdater.h>
+#include <networkit/io/KONECTGraphReader.hpp>
+#include <networkit/io/SNAPGraphReader.hpp>
+#include <networkit/dynamics/GraphEvent.hpp>
+#include <networkit/dynamics/GraphUpdater.hpp>
 #include "UpdateData.h"
 #include <boost/program_options.hpp>
-#include <NetworKit/distance/Dijkstra.h>
-#include <NetworKit/distance/BFS.h>
-#include <NetworKit/graph/Graph.h>
+#include <networkit/distance/Dijkstra.hpp>
+#include <networkit/distance/BFS.hpp>
+#include <networkit/graph/Graph.hpp>
 #include <boost/lexical_cast.hpp>
 
 #ifndef CUSTOMDATATYPES_H_
