@@ -56,7 +56,7 @@ public:
 
     treeNode* DFS(int node);
 
-    void removeSubTree(treeNode* root);
+    void removeTree(treeNode* root);
 
     void deleteSubTree(treeNode* root);
 };

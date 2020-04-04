@@ -4,6 +4,7 @@
 
 #include "Tree.h"
 #include <iostream>
+#include <queue>
 //#include </usr/lib/include/boost/lockfree/queque.hpp>
 
 
@@ -124,40 +125,43 @@ void Tree::printTree(treeNode* root){
 
 treeNode* Tree::DFS(int node){
 
-	bool trovato= false;
+	bool trovato=false;
 	treeNode* selectedNode;
-	/*boost::lockfree::queque<treeNode*> queque;
-	queque.push(this->getRoot());
+	std::queue<treeNode*> queue;
+	queue.push(this->getRoot());
 	
-	while(! queque.empty() & !trovato){
-		queque.pop(selectedNode);
+	while(! queue.empty() & ! trovato){
+		selectedNode=queue.front();
+		queue.pop();
 
-		if(selectedNode->node = node){
-			break;
+		if(selectedNode->node == node){
+			std::cout<<"nodo selezionato"<<selectedNode->node<<"\n";
+			trovato = true;;
 		}
 		else{
 			for(int i=0;i<selectedNode->children.size();i++){
 
-				queque.push(selectedNode->children[i]);
+				queue.push(selectedNode->children[i]);
 		
 			}
 
 		}
 	
-	}*/
+	}
 
 	//out of cicle
+	std::cout<<"nodo da riportare"<<selectedNode->node<<"\n";
 	return selectedNode;
 
 
 }
 
-// va richiamata sui figli non sul nodo altrimenti lo elimina
-void Tree::removeSubTree(treeNode* root){
+// Questa funzione elimina tutto l'albero radicato nel nodo root compresa la radice
+void Tree::removeTree(treeNode* root){
 
  	if(!root->children.empty()){
         for(int i = 0; i<root->children.size(); i++){
-            removeSubTree(root->children[i]);
+            removeTree(root->children[i]);
         }
         }
 
@@ -166,12 +170,12 @@ void Tree::removeSubTree(treeNode* root){
 		
 }
 
-// va richiamata sul nodo radice del sottoalbero
+// Questa funzione rimuove tutti i sottoalberi radicati in un nodo
 void Tree::deleteSubTree(treeNode* root){
 
 	for(int i=0;i<root->children.size();i++)
         {
-	removeSubTree(root->children[i]);
+	removeTree(root->children[i]);
 		
 	}
 	root->children.resize(0);
@@ -195,15 +199,20 @@ void Tree::deleteSubTree(treeNode* root){
         t->addNode(n, nodes[2]);
 	std::cout<< "prima \n";
         t->printTree(t->getRoot());
+
+	root = t->DFS(2);
+	std::cout<< "padre di 2   :" << root->father->node<< "\n";
 	
 	t->deleteSubTree(t->getRoot());
 	
 	
 	std::cout<< "dopo \n";
-    t->printTree(t->getRoot());
+        t->printTree(t->getRoot());
 
 
 
-}*/
 
+
+}
+*/
 
