@@ -71,6 +71,14 @@ struct parallel_vector {
 }  // namespace
 
 
+custom_node Labeling_Tools::lastNode(){
+
+	return keeper.first.back();
+}
+
+
+
+
 
 void Labeling_Tools::getPaths(custom_node n1,custom_node n2, bool forward_visit, std::set<std::vector<custom_node> >& paths){
 
@@ -713,11 +721,11 @@ void Labeling_Tools::weighted_build(){
 	else
 		builder_.label() << "Building WEIGHTED UNDIRECTED labeling for " <<graph->numberOfNodes()<< " vertices";
 
-	for(custom_node order_of_source = 0; order_of_source<this->graph->upperNodeIdBound();order_of_source++){
+//	for(custom_node order_of_source = 0; order_of_source<this->graph->upperNodeIdBound();order_of_source++){
 
-		custom_node s = index_to_node(order_of_source);
+		custom_node s = lastNode();                            //index_to_node(order_of_source);
 		if(!this->graph->hasNode(s))
-			continue;
+		 return;	//continue;
 
 		++builder_;
 
@@ -741,19 +749,19 @@ void Labeling_Tools::weighted_build(){
 			status_prio_que[current]=2;
 			weighted_pop();
 
-			if(node_to_index(current)<order_of_source)
-				continue;
+			//if(node_to_index(current)<order_of_source)
+			//	continue;
 			index->query(s,current,current_distance,encoded);
 			labeling_distance = encoded.second;
 
 			if(labeling_distance<=current_distance)
 				continue;
 
-			index->in_labels[current].back().v = order_of_source;
+			index->in_labels[current].back().v = s;		//order_of_source;
 			index->in_labels[current].back().d = current_distance;
 			index->in_labels[current].push_back(LabelEntry(NULL_NODE,NULL_WEIGHT));
 
-			added_per_visit[order_of_source]++;
+			//added_per_visit[order_of_source]++;
 
 			weighted_relax(current,current_distance,true);
 
@@ -762,7 +770,7 @@ void Labeling_Tools::weighted_build(){
 		weighted_reset();
 
 		if(!graph->isDirected())
-			continue;
+			return;		//continue;
 
 #ifndef NDEBUG
 		for(size_t t = 0;t<marked.size();t++)
@@ -778,8 +786,8 @@ void Labeling_Tools::weighted_build(){
 			status_prio_que[current]=2;
 			weighted_pop();
 
-			if(node_to_index(current)<order_of_source)
-				continue;
+			//if(node_to_index(current)<order_of_source)
+			//	continue;
 
 			index->query(current,s,current_distance,encoded);
 			labeling_distance = encoded.second;
@@ -787,11 +795,11 @@ void Labeling_Tools::weighted_build(){
 			if(labeling_distance<=current_distance)
 				continue;
 
-			index->out_labels[current].back().v = order_of_source;
+			index->out_labels[current].back().v = s;		//order_of_source;
 			index->out_labels[current].back().d = current_distance;
 			index->out_labels[current].push_back(LabelEntry(NULL_NODE,NULL_WEIGHT));
 
-			added_per_visit[order_of_source]++;
+			//added_per_visit[order_of_source]++;
 
 			weighted_relax(current,current_distance,false);
 
@@ -800,7 +808,7 @@ void Labeling_Tools::weighted_build(){
 		weighted_reset();
 
 
-	}
+	//}
 }
 
 

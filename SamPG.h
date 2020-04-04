@@ -5,6 +5,7 @@
 #include "mersenneTwister.h"
 #include "Dijkstra.h"
 #include <networkit/graph/Graph.hpp>
+#include "Labeling.h"
 
 #ifndef SAMPG_H
 #define SAMPG_H
@@ -27,7 +28,7 @@ public:
 
     int maxDescNode();
 	
-    void encreaseForest(int Samples,NetworKit::Graph* graph);
+    void encreaseForest(int Samples,NetworKit::Graph* graph,Labeling* labeling);
 
     void updateForest(int node);
 

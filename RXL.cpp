@@ -9,7 +9,6 @@
 #include "Labeling_Tools.h"
 #include "Dijkstra.h"
 #include "SamPG.h"
-#include "Tree.h"
 #include "networkit/graph/Graph.hpp"
 
 
@@ -18,17 +17,33 @@ int main(){
 
     int k = 50;
     NetworKit::Graph* graph;
-    Auxiliary::read("example.hist", false, &graph);
+    Auxiliary::read("graph1.hist", false, &graph);
 
     SamPG* spg = new SamPG(k);
     spg->createForest(graph);
 
-    for(int i = 0; i<graph->numberOfNodes(); i++){
+    int max = spg->maxDescNode();
 
-        int max = spg->maxDescNode();
+    custom_node new_node = max;
+	
+    std::pair<std::vector<custom_node>,std::vector<custom_node>> keeper;
+
+    keeper.first.push_back(new_node);
+
+    Labeling* labeling = new Labeling(graph->isDirected());
+
+    Labeling_Tools* lt = new Labeling_Tools(graph,labeling,keeper);
+	
+
+    std::cout<<"numero di label dopo prima iterazione :"<<labeling->getNumberOfLabelEntries();
+        
+
+	
+	
 
 
 
-    }
+
+    
 
 }

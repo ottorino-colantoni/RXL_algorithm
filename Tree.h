@@ -38,7 +38,7 @@ public:
 
     void encreaseDescendants(treeNode* node);
 
-    void decreaseDescendants(treeNode* node);
+    void decreaseDescendants(treeNode* node, int num_of_descendants);
 
     void addNode(treeNode* node, treeNode* father);
 

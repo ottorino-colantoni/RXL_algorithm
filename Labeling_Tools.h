@@ -217,12 +217,27 @@ private:
 	void getPaths(custom_node,custom_node, bool, std::set<std::vector<custom_node> >&);
 
 
+	//funzione per creazione Labeling : ritorna l'ultimo nodo inserito nell'array che contiene l'ordinametno dei nodi
+	custom_node lastNode();
+
+	//funzione per aggiungere elemento a keeper 
+	void add_node_to_keeper(custom_node node){
+	
+		keeper.first.push_back(node);
+	}
+
 public:
 	std::vector<UpdateData> handle_affected_comparisons(NetworKit::GraphEvent*);
 	double preprocessing_time;
 	void update(NetworKit::GraphEvent*, UpdateData*,bool=true);
 	Labeling_Tools(NetworKit::Graph*,Labeling*,std::pair<std::vector<custom_node>,std::vector<custom_node>>,bool=true);
 	virtual ~Labeling_Tools();
+
+	
+
+
+
+
 };
 
 #endif /* LABELING_ALGORITHMS_H_ */

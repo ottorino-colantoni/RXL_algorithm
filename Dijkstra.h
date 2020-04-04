@@ -7,17 +7,18 @@
 
 #include "Tree.h"
 #include <networkit/graph/Graph.hpp>
+#include "Labeling.h"
 
-struct heap_data {
+struct heap_dijkstra {
     int node;
     int prio;
-    heap_data(int n,int w)
+    heap_dijkstra(int n,int w)
     {
         node = n;
         prio = w;
     }
 
-    bool operator<(heap_data const & rhs) const
+    bool operator<(heap_dijkstra const & rhs) const
     {
         //MIN HEAP WITHOUT CHANGIN SIGN
         return this->prio > rhs.prio;
@@ -30,7 +31,7 @@ public:
 
     Dijkstra();
 
-    void runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph);
+    void runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph, bool pruned = false, Labeling* index = nullptr);
 
 };
 

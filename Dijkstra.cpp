@@ -10,11 +10,11 @@
 Dijkstra::Dijkstra() {};
 
 
-void Dijkstra::runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph, bool pruned = false, Labeling* index = nullptr) {
+void Dijkstra::runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph, bool pruned , Labeling* index ) {
 
-    boost::heap::fibonacci_heap<heap_data>* pq = new boost::heap::fibonacci_heap<heap_data>();
-    boost::heap::fibonacci_heap<heap_data>::handle_type* handles =
-            new boost::heap::fibonacci_heap<heap_data>::handle_type[graph->upperNodeIdBound()];
+    boost::heap::fibonacci_heap<heap_dijkstra>* pq = new boost::heap::fibonacci_heap<heap_dijkstra>();
+    boost::heap::fibonacci_heap<heap_dijkstra>::handle_type* handles =
+            new boost::heap::fibonacci_heap<heap_dijkstra>::handle_type[graph->upperNodeIdBound()];
     std::vector<int> distances;
     int size= graph->numberOfNodes();
     distances.resize(size,INF);
@@ -26,7 +26,7 @@ void Dijkstra::runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph, bool pru
     //inserimento radice nell'array
     support[source]= treeDijkstra->getRoot();
     //inserimento radice nel vettore handles
-    handles[source] = pq->emplace(heap_data(source,0));
+    handles[source] = pq->emplace(heap_dijkstra(source,0));
     // variabile per peso arco
     int wuv;
     //inizio ciclo per dijkstra
@@ -46,7 +46,7 @@ void Dijkstra::runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph, bool pru
             wuv = graph -> weight(current,v);
             if(distances[v] == INF) {
                 distances[v] = distance + wuv;
-                handles[v] = pq->push(heap_data(v, distances[v]));
+                handles[v] = pq->push(heap_dijkstra(v, distances[v]));
                 // il nodo è stato trovato per la prima volta quindi faccio addNode poi lo aggiungo alla tabella hash
                 treeNode* new_child= new treeNode();
                 new_child->node=v;
@@ -56,7 +56,7 @@ void Dijkstra::runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph, bool pru
             else if(wuv+distance< distances[v]) {
                 distances[v] = distance + wuv;
                 pq->erase(handles[v]);
-                handles[v] = pq->push(heap_data(v, distances[v]));
+                handles[v] = pq->push(heap_dijkstra(v, distances[v]));
                 //aggiorno il padre di v e rimuovo il figlio v dalla lista del padre precedemente salvato;
                 treeDijkstra->updateFather(support[current],support[v]);
             }

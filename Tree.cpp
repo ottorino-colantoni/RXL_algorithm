@@ -52,11 +52,11 @@ void Tree::encreaseDescendants(treeNode* node){
     }
 }
 
-void Tree::decreaseDescendants(treeNode* node){
+void Tree::decreaseDescendants(treeNode* node ,int num_of_descendants){
     if(node->father != NULL){
         node->father->num_of_descendants -= 1;
         this->desc_vect[node->father->node] = node->father->num_of_descendants;
-        decreaseDescendants(node->father);
+        decreaseDescendants(node->father,1);
     }
 }
 
@@ -86,7 +86,7 @@ void Tree::removeChild(treeNode* child){
         for (int i = 0; i < size; i++) {
             if (child->node == child->father->children[i]->node){
                 child->father->children.erase(child->father->children.begin()+i);
-                decreaseDescendants(child);
+                decreaseDescendants(child, 1);
                 child->father = NULL;
                 break;
             }
@@ -161,12 +161,13 @@ void Tree::removeTree(treeNode* root){
 
     if(!root->children.empty()){
         for(int i = 0; i<root->children.size(); i++){
-            removeSubTree(root->children[i]);
+            removeTree(root->children[i]);
         }
     }
 
     this->desc_vect[root->node] = 0;
     delete root;
+
 
 }
 
@@ -175,7 +176,7 @@ void Tree::deleteSubTree(treeNode* root){
 
     for(int i=0;i<root->children.size();i++)
     {
-        removeSubTree(root->children[i]);
+        removeTree(root->children[i]);
 
     }
     decreaseDescendants(root, root->num_of_descendants);
@@ -183,37 +184,5 @@ void Tree::deleteSubTree(treeNode* root){
     root->children.resize(0);
 }
 
-/*int main(){
 
-    Tree* t = new Tree(5,5);
-    treeNode* root = t->getRoot();
-    std::vector<treeNode*> nodes;
-    for(int i = 0; i<10; i++){
-        treeNode* n= new treeNode();
-        n->node = i;
-        nodes.push_back(n);
-        t->addNode(nodes[i], root);
-    }
-		
-	treeNode* n= new treeNode();
-        n->node = 50;
-        t->addNode(n, nodes[2]);
-	std::cout<< "prima \n";
-        t->printTree(t->getRoot());
-
-	root = t->DFS(2);
-	std::cout<< "padre di 2   :" << root->father->node<< "\n";
-	
-	t->deleteSubTree(t->getRoot());
-	
-	
-	std::cout<< "dopo \n";
-        t->printTree(t->getRoot());
-
-
-
-
-
-}
-*/
 

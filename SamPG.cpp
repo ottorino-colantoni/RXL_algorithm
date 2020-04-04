@@ -4,6 +4,7 @@
 
 #include "SamPG.h"
 
+
 SamPG::SamPG(){};
 
 SamPG::SamPG(int k){
@@ -28,7 +29,7 @@ int SamPG::maxDescNode(){
     }
 
     int roundNode = 0;
-    for(int y=1;y<counters.size();t++){
+    for(int y=1;y<counters.size();y++){
         if(counters[y-1]<counters[y]){
             roundNode=y;
         }
@@ -45,7 +46,7 @@ void SamPG::encreaseForest(int Samples, NetworKit::Graph* graph, Labeling* index
 
       MersenneTwister random;
       Dijkstra *dijkstra;
-      for (int i = 0; i < this->Samples; i++) {
+      for (int i = 0; i < Samples; i++) {
           this->samplesForest.push_back(
                   new Tree(random.getRandomInteger() % graph->numberOfNodes(), graph->numberOfNodes()));
           dijkstra->runDijkstra(samplesForest.back(), graph, true, index);
@@ -54,12 +55,12 @@ void SamPG::encreaseForest(int Samples, NetworKit::Graph* graph, Labeling* index
   }
 
 
-void updateForest(int node){
+void SamPG::updateForest(int node){
 
 	for(int i=0; i<num_samples; i++){
 		treeNode* maxNode;
-		maxNode=this->sampleForest[i]->DFS(node);
-		sampleForest[i]->deleteSubTree(maxNode);
+		maxNode=this->samplesForest[i]->DFS(node);
+		samplesForest[i]->deleteSubTree(maxNode);
 
 	}
 	
