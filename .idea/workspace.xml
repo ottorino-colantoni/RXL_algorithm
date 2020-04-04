@@ -11,14 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a3c6d7e8-64eb-4178-8f51-6a05693d2115" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auxiliary.h" beforeDir="false" afterPath="$PROJECT_DIR$/Auxiliary.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Labeling_Tools.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Labeling_Tools.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Labeling_Tools.h" beforeDir="false" afterPath="$PROJECT_DIR$/Labeling_Tools.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RXL" beforeDir="false" afterPath="$PROJECT_DIR$/RXL" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RXL.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/RXL.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SamPG.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SamPG.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tree.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Tree.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeDijkstra.cpp" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,26 +39,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SamPG.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-60">
+            <state relative-caret-position="-455">
               <caret line="26" column="68" selection-start-line="26" selection-start-column="68" selection-end-line="26" selection-end-column="68" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RXL.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+            <state relative-caret-position="25">
+              <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tree.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="618">
-              <caret line="179" column="30" selection-start-line="179" selection-start-column="30" selection-end-line="179" selection-end-column="30" />
+            <state relative-caret-position="250">
+              <caret line="183" column="56" selection-start-line="183" selection-start-column="56" selection-end-line="183" selection-end-column="56" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Dijkstra.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -153,8 +158,8 @@
         <option value="$PROJECT_DIR$/Labeling_Tools.h" />
         <option value="$PROJECT_DIR$/Labeling_Tools.cpp" />
         <option value="$PROJECT_DIR$/SamPG.cpp" />
-        <option value="$PROJECT_DIR$/RXL.cpp" />
         <option value="$PROJECT_DIR$/Tree.cpp" />
+        <option value="$PROJECT_DIR$/RXL.cpp" />
       </list>
     </option>
   </component>
@@ -219,16 +224,15 @@
       <workItem from="1585925726158" duration="9304000" />
       <workItem from="1585992237075" duration="5205000" />
       <workItem from="1586009954389" duration="19000" />
-      <workItem from="1586010981862" duration="11905000" />
+      <workItem from="1586010981862" duration="15627000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37595000" />
+    <option name="totallyTimeSpent" value="41317000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="70" y="27" width="1850" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27333334" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -242,7 +246,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.03267974" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.4335512" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -276,11 +280,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/treeDijkstra.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-794" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../example/Auxiliary.cpp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -315,13 +314,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/RXL.h" />
-    <entry file="file://$PROJECT_DIR$/Dijkstra.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/UpdateData.h">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -411,24 +403,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/treeDijkstra.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-585" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SamPG.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-60">
+        <state relative-caret-position="-455">
           <caret line="26" column="68" selection-start-line="26" selection-start-column="68" selection-end-line="26" selection-end-column="68" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RXL.cpp">
+    <entry file="file://$PROJECT_DIR$/Dijkstra.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tree.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="618">
-          <caret line="179" column="30" selection-start-line="179" selection-start-column="30" selection-end-line="179" selection-end-column="30" />
+        <state relative-caret-position="250">
+          <caret line="183" column="56" selection-start-line="183" selection-start-column="56" selection-end-line="183" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RXL.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
         </state>
       </provider>
     </entry>

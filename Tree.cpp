@@ -41,7 +41,7 @@ void Tree::addNode(treeNode* node, treeNode* father){
 
     node->father = father;
     father->children.push_back(node);
-    encreaseDescendants(node);
+    encreaseDescendants(node->father);
 }
 
 void Tree::encreaseDescendants(treeNode* node){
@@ -86,7 +86,7 @@ void Tree::removeChild(treeNode* child){
         for (int i = 0; i < size; i++) {
             if (child->node == child->father->children[i]->node){
                 child->father->children.erase(child->father->children.begin()+i);
-                decreaseDescendants(child, 1);
+                decreaseDescendants(child->father, 1);
                 child->father = NULL;
                 break;
             }
@@ -103,7 +103,7 @@ void Tree::updateFather(treeNode* father, treeNode* child){
     removeChild(child);
     child->father = father;
     father->children.push_back(child);
-    encreaseDescendants(child);
+    encreaseDescendants(child->father);
 }
 
 
@@ -112,7 +112,12 @@ void Tree::updateFather(treeNode* father, treeNode* child){
 // funziona
 void Tree::printTree(treeNode* root){
 
-    std::cout << root->node << "\n";
+    std::cout << root->node << "-";
+    for(int i=0; i<root->children.size(); i++){
+        std::cout<<root->children[i]->node;
+    }
+
+    std::cout<<"\n";
 
     for(int i=0;i< root->children.size();i++){
         printTree(root->children[i]);
@@ -177,14 +182,8 @@ void Tree::deleteSubTree(treeNode* root){
 
     }
     decreaseDescendants(root, root->num_of_descendants);
-    std::cout<<"Vettore disc";
-    for (int j = 0; j < this->getDescVect().size(); ++j) {
-        std::cout<<this->getDescVect()[j];
-    }
-    std::cout<<"\n";
     root->num_of_descendants = 0;
     root->children.resize(0);
 }
-
 
 

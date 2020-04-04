@@ -16,7 +16,7 @@
 
 int main(){
 
-    int k = 15;
+    int k = 5;
     NetworKit::Graph* graph;
     Auxiliary::read("graph1.hist", false, &graph);
 
@@ -46,11 +46,28 @@ int main(){
     std::cout<<"numero di label dopo prima iterazione :"<<labeling->getNumberOfLabelEntries()<< "\n";
 
     labeling->printInLabels();
-        
 
-	
-	
+    /*
+    NetworKit::Graph* graph;
+    Auxiliary::read("graph1.hist", false, &graph);
+    Dijkstra d;
+    Tree* t = new Tree(0, graph->numberOfNodes());
+    d.runDijkstra(t, graph);
+    t->printTree(t->getRoot());
+    std::vector<int> c = t->getDescVect();
+    for (int i = 0; i < c.size() ; ++i) {
+        std::cout<<"nodo: "<<i<<" disc: "<<c[i]<<"\n";
+    }
 
+    treeNode* n = t->DFS(3);
+    t->deleteSubTree(n);
+
+    t->printTree(t->getRoot());
+    c = t->getDescVect();
+    for (int i = 0; i < c.size() ; ++i) {
+        std::cout<<"nodo: "<<i<<" disc: "<<c[i]<<"\n";
+    }
+    */
 
 
 
