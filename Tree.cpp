@@ -159,28 +159,29 @@ treeNode* Tree::DFS(int node){
 // Questa funzione elimina tutto l'albero radicato nel nodo root compresa la radice
 void Tree::removeTree(treeNode* root){
 
- 	if(!root->children.empty()){
+    if(!root->children.empty()){
         for(int i = 0; i<root->children.size(); i++){
-            removeTree(root->children[i]);
+            removeSubTree(root->children[i]);
         }
-        }
+    }
 
-	std::cout << "cancello il nodo" << root->node <<"\n";
-	delete root;
-		
+    this->desc_vect[root->node] = 0;
+    delete root;
+
 }
 
 // Questa funzione rimuove tutti i sottoalberi radicati in un nodo
 void Tree::deleteSubTree(treeNode* root){
 
-	for(int i=0;i<root->children.size();i++)
-        {
-	removeTree(root->children[i]);
-		
-	}
-	root->children.resize(0);
-}
+    for(int i=0;i<root->children.size();i++)
+    {
+        removeSubTree(root->children[i]);
 
+    }
+    decreaseDescendants(root, root->num_of_descendants);
+    root->num_of_descendants = 0;
+    root->children.resize(0);
+}
 
 /*int main(){
 
