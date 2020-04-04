@@ -21,6 +21,20 @@ custom_node Labeling::node_to_index(custom_node node){
 	return reverse_order[node];
 }
 
+
+
+void Labeling::printInLabels(){
+
+     for(int i =0 ;i < this->in_labels.size() ;i++){
+
+		for(int j=0; j<in_labels[i].size()-1;j++){
+
+			std::cout << "labels of : "<< i <<"nodo :"<< this->in_labels[i][j].v<< "distanza: "<<  this->in_labels[i][j].d << "\n";	
+		}
+	}
+
+}
+
 void Labeling::query(custom_node v, custom_node w, custom_weight explored_dist,std::pair<custom_node,custom_weight>& encoded) {
 
 

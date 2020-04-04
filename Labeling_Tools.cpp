@@ -761,7 +761,7 @@ void Labeling_Tools::weighted_build(){
 			index->in_labels[current].back().d = current_distance;
 			index->in_labels[current].push_back(LabelEntry(NULL_NODE,NULL_WEIGHT));
 
-			//added_per_visit[order_of_source]++;
+			added_per_visit[   0 /*order_of_source*/]++;
 
 			weighted_relax(current,current_distance,true);
 

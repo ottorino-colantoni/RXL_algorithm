@@ -15,7 +15,7 @@
 
 int main(){
 
-    int k = 50;
+    int k = 10;
     NetworKit::Graph* graph;
     Auxiliary::read("graph1.hist", false, &graph);
 
@@ -24,18 +24,26 @@ int main(){
 
     int max = spg->maxDescNode();
 
+    std::cout << "nodo con più discendenti " << max <<"\n"; 
+
     custom_node new_node = max;
 	
     std::pair<std::vector<custom_node>,std::vector<custom_node>> keeper;
 
     keeper.first.push_back(new_node);
+	
+    keeper.second.resize(graph->upperNodeIdBound());
+
+    keeper.second[max] = 0;
 
     Labeling* labeling = new Labeling(graph->isDirected());
 
     Labeling_Tools* lt = new Labeling_Tools(graph,labeling,keeper);
 	
 
-    std::cout<<"numero di label dopo prima iterazione :"<<labeling->getNumberOfLabelEntries();
+    std::cout<<"numero di label dopo prima iterazione :"<<labeling->getNumberOfLabelEntries()<< "\n";
+
+    labeling->printInLabels();
         
 
 	

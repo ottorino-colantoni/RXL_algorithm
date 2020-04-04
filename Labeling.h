@@ -47,6 +47,8 @@ public:
 	custom_node getNumberOfLabelEntries();
 //	double getAverageNumberOfLabelsPerNode();
 
+	void printInLabels();
+
 };
 
 #endif /* LABELING_H_ */
