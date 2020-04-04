@@ -13,33 +13,35 @@
 
 
 
+
 int main(){
 
-    int k = 10;
+    int k = 15;
     NetworKit::Graph* graph;
     Auxiliary::read("graph1.hist", false, &graph);
 
     SamPG* spg = new SamPG(k);
     spg->createForest(graph);
-
-    int max = spg->maxDescNode();
-
-    std::cout << "nodo con più discendenti " << max <<"\n"; 
-
-    custom_node new_node = max;
-	
-    std::pair<std::vector<custom_node>,std::vector<custom_node>> keeper;
-
-    keeper.first.push_back(new_node);
-	
+    std::pair <std::vector<custom_node>, std::vector<custom_node>> keeper;
     keeper.second.resize(graph->upperNodeIdBound());
+    Labeling *labeling = new Labeling(graph->isDirected());
+    Labeling_Tools *lt = new Labeling_Tools(graph, labeling, keeper);
+    int max;
 
-    keeper.second[max] = 0;
 
-    Labeling* labeling = new Labeling(graph->isDirected());
+    for (int i = 0; i < graph->numberOfNodes(); ++i) {
 
-    Labeling_Tools* lt = new Labeling_Tools(graph,labeling,keeper);
-	
+        max = spg->maxDescNode();
+        std::cout << "nodo con più discendenti " << max << "\n";
+
+        lt->add_node_to_keeper(max, i);
+
+        lt->weighted_build_RXL();
+
+        spg->updateForest(max);
+
+    }
+
 
     std::cout<<"numero di label dopo prima iterazione :"<<labeling->getNumberOfLabelEntries()<< "\n";
 

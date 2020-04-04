@@ -57,11 +57,14 @@ void SamPG::encreaseForest(int Samples, NetworKit::Graph* graph, Labeling* index
 
 void SamPG::updateForest(int node){
 
+    treeNode* maxNode;
 	for(int i=0; i<num_samples; i++){
-		treeNode* maxNode;
 		maxNode=this->samplesForest[i]->DFS(node);
+        std::cout<<"PRIMA"<<"\n";
+        samplesForest[i]->printTree(samplesForest[i]->getRoot());
 		samplesForest[i]->deleteSubTree(maxNode);
-
+        std::cout<<"DOPO"<<"\n";
+        samplesForest[i]->printTree(samplesForest[i]->getRoot());
 	}
 	
 }

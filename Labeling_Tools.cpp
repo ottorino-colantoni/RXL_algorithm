@@ -159,7 +159,7 @@ Labeling_Tools::Labeling_Tools(NetworKit::Graph* g,Labeling* l,std::pair<std::ve
 		prio_que = new boost::heap::fibonacci_heap<heap_data>();
 		handles_prio_que = new boost::heap::fibonacci_heap<heap_data>::handle_type[graph->upperNodeIdBound()];
 		status_prio_que.resize(graph->upperNodeIdBound(),0);
-		weighted_build();
+		weighted_build_RXL();
 	}
 
 	preprocessing_time =  time_counter.elapsed();
@@ -185,6 +185,41 @@ Labeling_Tools::Labeling_Tools(NetworKit::Graph* g,Labeling* l,std::pair<std::ve
 		dynamicSetUp();
 
 	assert(affected_x.empty() && affected_y.empty());
+
+}
+
+
+Labeling_Tools::Labeling_Tools(NetworKit::Graph* g,Labeling* l,std::pair<std::vector<custom_node>,std::vector<custom_node>> order_keeper){
+
+    CALLGRIND_STOP_INSTRUMENTATION;
+    keeper = order_keeper;
+    graph = g;
+    index = l;
+    preprocessing_time = std::numeric_limits<double>::max();
+    dynamic = false;
+
+    boost::timer::auto_cpu_timer t;
+
+    mytimer time_counter;
+    time_counter.restart();
+
+    INFO("Setting Up Data Structures");
+
+    index->order = keeper.first;
+    index->reverse_order = keeper.second;
+
+    added_per_visit.resize(graph->upperNodeIdBound(),0);
+
+    index->in_labels.clear();
+    index->in_labels.resize(graph->upperNodeIdBound());
+
+    graph->parallelForNodes([&] (custom_node v){
+        index->in_labels[v].push_back(LabelEntry(NULL_NODE,NULL_WEIGHT));
+    });
+
+    prio_que = new boost::heap::fibonacci_heap<heap_data>();
+    handles_prio_que = new boost::heap::fibonacci_heap<heap_data>::handle_type[graph->upperNodeIdBound()];
+    status_prio_que.resize(graph->upperNodeIdBound(),0);
 
 }
 
@@ -810,6 +845,91 @@ void Labeling_Tools::weighted_build(){
 
 	//}
 }
+
+
+
+
+
+void Labeling_Tools::weighted_build_RXL(){
+
+    ProgressStream builder_(graph->numberOfNodes());
+    std::pair<custom_node,custom_weight> encoded = std::make_pair(NULL_NODE,NULL_WEIGHT);
+    if(graph->isDirected())
+        builder_.label() << "Building WEIGHTED DIRECTED labeling for " <<graph->numberOfNodes()<< " vertices";
+    else
+        builder_.label() << "Building WEIGHTED UNDIRECTED labeling for " <<graph->numberOfNodes()<< " vertices";
+
+
+    custom_node s = lastNode();
+    if(!this->graph->hasNode(s))
+        return;	//continue;
+
+    ++builder_;
+
+#ifndef NDEBUG
+    for(size_t t = 0;t<marked.size();t++)
+        assert(status_prio_que[t]==0);
+    assert(trace_prio_que.empty());
+#endif
+
+    //FORWARD VISIT
+    assert(weighted_empty());
+    weighted_insert(s,0);
+
+    custom_node current;
+    custom_weight current_distance;
+    custom_weight labeling_distance;
+
+    while(!weighted_empty()){
+        current = weighted_get_min_node();
+        current_distance =  weighted_get_min_dist();
+        status_prio_que[current]=2;
+        weighted_pop();
+
+        //if(node_to_index(current)<order_of_source)
+        //	continue;
+        index->query(s,current,current_distance,encoded);
+        labeling_distance = encoded.second;
+
+        if(labeling_distance<=current_distance)
+            continue;
+
+        index->in_labels[current].back().v = s;		//order_of_source;
+        index->in_labels[current].back().d = current_distance;
+        index->in_labels[current].push_back(LabelEntry(NULL_NODE,NULL_WEIGHT));
+
+        added_per_visit[keeper.first.size()-1]++;
+
+        weighted_relax(current,current_distance,true);
+
+    }
+
+    weighted_reset();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3492,6 +3612,12 @@ std::vector<UpdateData> Labeling_Tools::handle_affected_comparisons(NetworKit::G
 	return trace;
 
 
+}
+
+void Labeling_Tools::add_node_to_keeper(custom_node node, int index){
+
+    keeper.first.push_back(node);
+    keeper.second[node] = index;
 }
 
 

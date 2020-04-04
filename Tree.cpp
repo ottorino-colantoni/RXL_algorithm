@@ -45,18 +45,18 @@ void Tree::addNode(treeNode* node, treeNode* father){
 }
 
 void Tree::encreaseDescendants(treeNode* node){
+    node->num_of_descendants += 1;
+    this->desc_vect[node->node] = node->num_of_descendants;
     if(node->father != NULL){ // se il nodo non è la radice, cioè non ha un genitore
-        node->father->num_of_descendants += 1;
-        this->desc_vect[node->father->node] = node->father->num_of_descendants;
         encreaseDescendants(node->father);
     }
 }
 
-void Tree::decreaseDescendants(treeNode* node ,int num_of_descendants){
+void Tree::decreaseDescendants(treeNode* node ,int numdesc){
+    node->num_of_descendants -= numdesc;
+    this->desc_vect[node->node] = node->num_of_descendants;
     if(node->father != NULL){
-        node->father->num_of_descendants -= 1;
-        this->desc_vect[node->father->node] = node->father->num_of_descendants;
-        decreaseDescendants(node->father,1);
+        decreaseDescendants(node->father,numdesc);
     }
 }
 
@@ -135,7 +135,6 @@ treeNode* Tree::DFS(int node){
 		queue.pop();
 
 		if(selectedNode->node == node){
-			std::cout<<"nodo selezionato"<<selectedNode->node<<"\n";
 			trovato = true;;
 		}
 		else{
@@ -150,9 +149,7 @@ treeNode* Tree::DFS(int node){
 	}
 
 	//out of cicle
-	std::cout<<"nodo da riportare"<<selectedNode->node<<"\n";
 	return selectedNode;
-
 
 }
 
@@ -180,6 +177,11 @@ void Tree::deleteSubTree(treeNode* root){
 
     }
     decreaseDescendants(root, root->num_of_descendants);
+    std::cout<<"Vettore disc";
+    for (int j = 0; j < this->getDescVect().size(); ++j) {
+        std::cout<<this->getDescVect()[j];
+    }
+    std::cout<<"\n";
     root->num_of_descendants = 0;
     root->children.resize(0);
 }

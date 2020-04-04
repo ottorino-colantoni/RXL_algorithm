@@ -9,7 +9,7 @@
 #define AUXILIARY_H_
 
 #include "CustomDataTypes.h"
-#include <boost/filesystem.hpp>
+#include </usr/include/boost/filesystem.hpp>
 #include <dirent.h>
 #include "Labeling.h"
 #include "callgrind.h"

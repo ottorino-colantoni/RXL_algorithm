@@ -219,24 +219,20 @@ private:
 
 	//funzione per creazione Labeling : ritorna l'ultimo nodo inserito nell'array che contiene l'ordinametno dei nodi
 	custom_node lastNode();
-
 	//funzione per aggiungere elemento a keeper 
-	void add_node_to_keeper(custom_node node){
-	
-		keeper.first.push_back(node);
-	}
+
+
 
 public:
+
+    void add_node_to_keeper(custom_node node, int index);
 	std::vector<UpdateData> handle_affected_comparisons(NetworKit::GraphEvent*);
 	double preprocessing_time;
 	void update(NetworKit::GraphEvent*, UpdateData*,bool=true);
-	Labeling_Tools(NetworKit::Graph*,Labeling*,std::pair<std::vector<custom_node>,std::vector<custom_node>>,bool=true);
+	Labeling_Tools(NetworKit::Graph*,Labeling*,std::pair<std::vector<custom_node>,std::vector<custom_node>>, bool);
+    Labeling_Tools(NetworKit::Graph*,Labeling*,std::pair<std::vector<custom_node>,std::vector<custom_node>>);
 	virtual ~Labeling_Tools();
-
-	
-
-
-
+    void weighted_build_RXL();
 
 };
 
