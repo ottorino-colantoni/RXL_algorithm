@@ -29,6 +29,8 @@ public:
 	
     void encreaseForest(int Samples,NetworKit::Graph* graph);
 
+    void updateForest(int node);
+
 };
 
 

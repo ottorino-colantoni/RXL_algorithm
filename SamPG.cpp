@@ -40,7 +40,7 @@ int SamPG::maxDescNode(){
 
 // Funzione per incrementare il numero di alberi campionati.  | Serve una versione di dijkstra modificata |
 
-  void SamPG::encreaseForest(int Samples, NetworKit::Graph* graph, Labeling* index) {
+void SamPG::encreaseForest(int Samples, NetworKit::Graph* graph, Labeling* index) {
 
 
       MersenneTwister random;
@@ -52,5 +52,42 @@ int SamPG::maxDescNode(){
       }
       this->num_samples += Samples;
   }
+
+
+void updateForest(int node){
+
+	for(int i=0; i<num_samples; i++){
+		treeNode* maxNode;
+		maxNode=this->sampleForest[i]->DFS(node);
+		sampleForest[i]->deleteSubTree(maxNode);
+
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
