@@ -29,23 +29,26 @@ int main(){
     int max;
 
 
-    for (int i = 0; i < graph->numberOfNodes(); ++i) {
+    for (int i = 0; i < graph->numberOfNodes(); i++) {
 
         max = spg->maxDescNode();
         std::cout << "nodo con più discendenti " << max << "\n";
-
         lt->add_node_to_keeper(max, i);
 
         lt->weighted_build_RXL();
 
         spg->updateForest(max);
 
+		spg->encreaseForest(5,graph,labeling);
+
     }
 
 
-    std::cout<<"numero di label dopo prima iterazione :"<<labeling->getNumberOfLabelEntries()<< "\n";
-
+    std::cout<<"numero di label  :"<<labeling->getNumberOfLabelEntries()<< "\n";
+ 	std::cout<<"distanza nodo 3-0 :"<<labeling->query(3,0)<< "\n";
     labeling->printInLabels();
+
+	
 
     /*
     NetworKit::Graph* graph;

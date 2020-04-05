@@ -73,7 +73,7 @@ struct parallel_vector {
 
 custom_node Labeling_Tools::lastNode(){
 
-	return keeper.first.back();
+	return this->index->order.back();
 }
 
 
@@ -159,7 +159,7 @@ Labeling_Tools::Labeling_Tools(NetworKit::Graph* g,Labeling* l,std::pair<std::ve
 		prio_que = new boost::heap::fibonacci_heap<heap_data>();
 		handles_prio_que = new boost::heap::fibonacci_heap<heap_data>::handle_type[graph->upperNodeIdBound()];
 		status_prio_que.resize(graph->upperNodeIdBound(),0);
-		weighted_build_RXL();
+		weighted_build();
 	}
 
 	preprocessing_time =  time_counter.elapsed();
@@ -756,11 +756,11 @@ void Labeling_Tools::weighted_build(){
 	else
 		builder_.label() << "Building WEIGHTED UNDIRECTED labeling for " <<graph->numberOfNodes()<< " vertices";
 
-//	for(custom_node order_of_source = 0; order_of_source<this->graph->upperNodeIdBound();order_of_source++){
+	for(custom_node order_of_source = 0; order_of_source<this->graph->upperNodeIdBound();order_of_source++){
 
-		custom_node s = lastNode();                            //index_to_node(order_of_source);
+		custom_node s =index_to_node(order_of_source);
 		if(!this->graph->hasNode(s))
-		 return;	//continue;
+		 continue;
 
 		++builder_;
 
@@ -784,19 +784,19 @@ void Labeling_Tools::weighted_build(){
 			status_prio_que[current]=2;
 			weighted_pop();
 
-			//if(node_to_index(current)<order_of_source)
-			//	continue;
+			if(node_to_index(current)<order_of_source)
+				continue;
 			index->query(s,current,current_distance,encoded);
 			labeling_distance = encoded.second;
 
 			if(labeling_distance<=current_distance)
 				continue;
 
-			index->in_labels[current].back().v = s;		//order_of_source;
+			index->in_labels[current].back().v = order_of_source;
 			index->in_labels[current].back().d = current_distance;
 			index->in_labels[current].push_back(LabelEntry(NULL_NODE,NULL_WEIGHT));
 
-			added_per_visit[   0 /*order_of_source*/]++;
+			added_per_visit[order_of_source]++;
 
 			weighted_relax(current,current_distance,true);
 
@@ -805,7 +805,7 @@ void Labeling_Tools::weighted_build(){
 		weighted_reset();
 
 		if(!graph->isDirected())
-			return;		//continue;
+			continue;
 
 #ifndef NDEBUG
 		for(size_t t = 0;t<marked.size();t++)
@@ -821,8 +821,8 @@ void Labeling_Tools::weighted_build(){
 			status_prio_que[current]=2;
 			weighted_pop();
 
-			//if(node_to_index(current)<order_of_source)
-			//	continue;
+			if(node_to_index(current)<order_of_source)
+				continue;
 
 			index->query(current,s,current_distance,encoded);
 			labeling_distance = encoded.second;
@@ -830,11 +830,11 @@ void Labeling_Tools::weighted_build(){
 			if(labeling_distance<=current_distance)
 				continue;
 
-			index->out_labels[current].back().v = s;		//order_of_source;
+			index->out_labels[current].back().v = order_of_source;
 			index->out_labels[current].back().d = current_distance;
 			index->out_labels[current].push_back(LabelEntry(NULL_NODE,NULL_WEIGHT));
 
-			//added_per_visit[order_of_source]++;
+			added_per_visit[order_of_source]++;
 
 			weighted_relax(current,current_distance,false);
 
@@ -843,7 +843,7 @@ void Labeling_Tools::weighted_build(){
 		weighted_reset();
 
 
-	//}
+	}
 }
 
 
@@ -888,17 +888,18 @@ void Labeling_Tools::weighted_build_RXL(){
 
         //if(node_to_index(current)<order_of_source)
         //	continue;
+		
         index->query(s,current,current_distance,encoded);
         labeling_distance = encoded.second;
 
-        if(labeling_distance<=current_distance)
+        if(labeling_distance<=current_distance){
             continue;
-
+	}
         index->in_labels[current].back().v = s;		//order_of_source;
         index->in_labels[current].back().d = current_distance;
         index->in_labels[current].push_back(LabelEntry(NULL_NODE,NULL_WEIGHT));
 
-        added_per_visit[keeper.first.size()-1]++;
+        //added_per_visit[keeper.first.size()-1]++;
 
         weighted_relax(current,current_distance,true);
 
@@ -3614,10 +3615,12 @@ std::vector<UpdateData> Labeling_Tools::handle_affected_comparisons(NetworKit::G
 
 }
 
-void Labeling_Tools::add_node_to_keeper(custom_node node, int index){
+void Labeling_Tools::add_node_to_keeper(custom_node node, int counter){
 
-    keeper.first.push_back(node);
-    keeper.second[node] = index;
+    this->index->order.push_back(node);
+
+    this->index->reverse_order[node]= counter;
+	
 }
 
 

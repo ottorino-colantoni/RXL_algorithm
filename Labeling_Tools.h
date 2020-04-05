@@ -225,7 +225,7 @@ private:
 
 public:
 
-    void add_node_to_keeper(custom_node node, int index);
+    void add_node_to_keeper(custom_node node, int counter);
 	std::vector<UpdateData> handle_affected_comparisons(NetworKit::GraphEvent*);
 	double preprocessing_time;
 	void update(NetworKit::GraphEvent*, UpdateData*,bool=true);

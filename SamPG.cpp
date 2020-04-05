@@ -27,10 +27,9 @@ int SamPG::maxDescNode(){
             counters[j] += this->samplesForest[i]->getDescVect()[j];
         }
     }
-
-    int roundNode = 0;
+	int roundNode= 0;
     for(int y=1;y<counters.size();y++){
-        if(counters[y-1]<counters[y]){
+        if(counters[roundNode]<counters[y]){
             roundNode=y;
         }
     }

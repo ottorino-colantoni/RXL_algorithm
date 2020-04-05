@@ -45,13 +45,15 @@ void Labeling::query(custom_node v, custom_node w, custom_weight explored_dist,s
 	const std::vector<LabelEntry> &s1 = dir ? this->out_labels[v] : this->in_labels[v];
 	const std::vector<LabelEntry> &s2 = this->in_labels[w];
 
-	custom_node max_index = std::max(node_to_index(v),node_to_index(w));
+	//std::cout<<"node_to_index[current] :"<<node_to_index(w)<<"\n";
+	//custom_node max_index = std::max(node_to_index(v),node_to_index(w));
+	//std::cout<<"max :"<<max_index<<"\n";
 
 	for (size_t i1 = 0, i2 = 0;;) {
-		if(s1[i1].v > max_index || s2[i2].v > max_index)
-			break;
+		//if(s1[i1].v > max_index || s2[i2].v > max_index)
+			//break;
 
-		else if (s1[i1].v < s2[i2].v)
+		/*else*/ if (s1[i1].v < s2[i2].v)
 			++i1;
 		else if (s1[i1].v > s2[i2].v)
 			++i2;
@@ -105,13 +107,13 @@ custom_weight Labeling::query(custom_node v, custom_node w) {
 
 
 	  size_t i1 = 0, i2 = 0;
-	  custom_node max_index = std::max(node_to_index(v),node_to_index(w));
+	//  custom_node max_index = std::max(node_to_index(v),node_to_index(w));
 
 	  while (i1 < s1.size() && i2 < s2.size()) {
-		  if(s1[i1].v > max_index || s2[i2].v > max_index)
-		  		break;
+		//  if(s1[i1].v > max_index || s2[i2].v > max_index)
+		  //		break;
 
-		  else if (s1[i1].v < s2[i2].v)
+		 /* else*/ if (s1[i1].v < s2[i2].v)
 			  ++i1;
 		  else if (s1[i1].v > s2[i2].v)
 			  ++i2;
