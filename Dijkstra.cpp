@@ -21,10 +21,8 @@ void Dijkstra::runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph, bool pru
     int source = treeDijkstra->getRoot()->node;
     distances[source] = 0;
     //creazione array
-    std::vector<treeNode*> support;
-    support.resize(size);
     //inserimento radice nell'array
-    support[source]= treeDijkstra->getRoot();
+    treeDijkstra->direct_acc[source]= treeDijkstra->getRoot();
     //inserimento radice nel vettore handles
     handles[source] = pq->emplace(heap_dijkstra(source,0));
     // variabile per peso arco
@@ -50,15 +48,15 @@ void Dijkstra::runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph, bool pru
                 // il nodo è stato trovato per la prima volta quindi faccio addNode poi lo aggiungo alla tabella hash
                 treeNode* new_child= new treeNode();
                 new_child->node=v;
-                treeDijkstra->addNode(new_child,support[current]);
-                support[v]=new_child;
+                treeDijkstra->addNode(new_child,treeDijkstra->direct_acc[current]);
+                treeDijkstra->direct_acc[v]=new_child;
             }
             else if(wuv+distance< distances[v]) {
                 distances[v] = distance + wuv;
                 pq->erase(handles[v]);
                 handles[v] = pq->push(heap_dijkstra(v, distances[v]));
                 //aggiorno il padre di v e rimuovo il figlio v dalla lista del padre precedemente salvato;
-                treeDijkstra->updateFather(support[current],support[v]);
+                treeDijkstra->updateFather(treeDijkstra->direct_acc[current],treeDijkstra->direct_acc[v]);
             }
         });
     }

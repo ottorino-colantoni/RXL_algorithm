@@ -6,8 +6,8 @@ VALGRIND = -g -DNDEBUG
 TARGET_A = RXL
 
 OPTIONS = -lnetworkit -lboost_serialization -lboost_program_options -lboost_system -lboost_filesystem -fopenmp -lboost_timer
-INCLUDEPATH = /home/mainuser/.local/lib/python3.6/site-packages/include/ -I/usr/include/valgrind
-PATHLIB = /home/mainuser/.local/lib/python3.6/site-packages/include/
+INCLUDEPATH = /home/f4b3r/networkit/include/ -I/usr/include/valgrind
+PATHLIB = /home/f4b3r/networkit/include
 SOURCES_A = $(TARGET_A).cpp Auxiliary.cpp  Labeling.cpp Labeling_Tools.cpp UpdateData.cpp LabelEntry.cpp Tree.cpp SamPG.cpp Dijkstra.cpp
 
 debug:

@@ -21,6 +21,7 @@ Tree::Tree(int source, int size){
     r.father = NULL;
     this->treeRoot = r;
     this->desc_vect.resize(size);
+    this->direct_acc.resize(size);
 }
 
 
@@ -168,22 +169,23 @@ void Tree::removeTree(treeNode* root){
     }
 
     this->desc_vect[root->node] = 0;
-    delete root;
+    this->direct_acc[root->node] = NULL;
+    root = NULL;
 
 
 }
 
 // Questa funzione rimuove tutti i sottoalberi radicati in un nodo
 void Tree::deleteSubTree(treeNode* root){
+    if(root != NULL) {
+        for (int i = 0; i < root->children.size(); i++) {
+            removeTree(root->children[i]);
 
-    for(int i=0;i<root->children.size();i++)
-    {
-        removeTree(root->children[i]);
-
+        }
+        decreaseDescendants(root, root->num_of_descendants);
+        root->num_of_descendants = 0;
+        root->children.resize(0);
     }
-    decreaseDescendants(root, root->num_of_descendants);
-    root->num_of_descendants = 0;
-    root->children.resize(0);
 }
 
 

@@ -29,11 +29,11 @@ int SamPG::maxDescNode(){
     }
 	int roundNode= 0;
     for(int y=1;y<counters.size();y++){
-        if(counters[roundNode]<counters[y]){
+        if(counters[roundNode]<=counters[y]){
             roundNode=y;
         }
     }
-
+    std::cout<<"MAX DISC = "<<counters[roundNode]<<"\n";
 	return roundNode;
 
 }
@@ -57,15 +57,15 @@ void SamPG::encreaseForest(int Samples, NetworKit::Graph* graph, Labeling* index
 void SamPG::updateForest(int node){
 
     treeNode* maxNode;
-	for(int i=0; i<num_samples; i++){
-		maxNode=this->samplesForest[i]->DFS(node);
-        std::cout<<"PRIMA"<<"\n";
-        samplesForest[i]->printTree(samplesForest[i]->getRoot());
-		samplesForest[i]->deleteSubTree(maxNode);
-        std::cout<<"DOPO"<<"\n";
-        samplesForest[i]->printTree(samplesForest[i]->getRoot());
-	}
-	
+        for (int i = 0; i < num_samples; i++) {
+            maxNode = this->samplesForest[i]->direct_acc[node];
+            //std::cout<<"PRIMA"<<"\n";
+            //samplesForest[i]->printTree(samplesForest[i]->getRoot());
+            samplesForest[i]->deleteSubTree(maxNode);
+            //std::cout<<"DOPO"<<"\n";
+            //samplesForest[i]->printTree(samplesForest[i]->getRoot());
+        }
+
 }
 
 

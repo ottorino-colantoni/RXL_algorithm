@@ -27,6 +27,7 @@ private:
 
 public:
 
+    std::vector<treeNode*> direct_acc;
 
     Tree();
 
