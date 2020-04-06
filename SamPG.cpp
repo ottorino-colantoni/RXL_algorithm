@@ -13,30 +13,30 @@ SamPG::SamPG(int k){
 }
 
 void SamPG::createForest(NetworKit::Graph* graph){
-    MersenneTwister random;
+    this->random_roots= new BestRandom(0, graph->numberOfNodes());
     Dijkstra* dijkstra;
     for(int i = 0; i<this->num_samples; i++){
-        this->samplesForest.push_back(new Tree(random.getRandomInteger() % graph->numberOfNodes(), graph->numberOfNodes()));
+        Tree* new_tree = new Tree(this->random_roots->random(), graph->numberOfNodes());
+        this->samplesForest.push_back(new_tree);
         dijkstra->runDijkstra(samplesForest.back(), graph);
+        this->totalNodes += new_tree->desc_vect[new_tree->getRoot()->node]+1;
     }
 }
 
 int SamPG::maxDescNode(){
-    std::vector<int> counters(this->samplesForest[0]->desc_vect.size(),0);
+    int counter=0;
     int roundNode;
     int max = 0;
-    mytimer t;
-    t.restart();
     for (int i = 0; i < this->samplesForest[0]->desc_vect.size() ; i++) {
-        for(int j = 0; j < this->samplesForest.size(); j++){
-            counters[i] += this->samplesForest[j]->desc_vect[i];
+        for(int j = 0; j < this->num_samples; j++){
+            counter += this->samplesForest[j]->desc_vect[i];
         }
-        if(counters[i]>=max){
-            max = counters[i];
+        if(counter>=max){
+            max = counter;
             roundNode = i;
         }
+        counter = 0;
     }
-    std::cout<<"tempo double for max: "<<t.elapsed();
     return roundNode;
 
 }
@@ -45,13 +45,14 @@ int SamPG::maxDescNode(){
 
 void SamPG::encreaseForest(int Samples, NetworKit::Graph* graph, Labeling* index) {
 
-
-      MersenneTwister random;
       Dijkstra *dijkstra;
       for (int i = 0; i < Samples; i++) {
-          this->samplesForest.push_back(
-                  new Tree(random.getRandomInteger() % graph->numberOfNodes(), graph->numberOfNodes()));
+          Tree* new_tree = new Tree(this->random_roots->random(), graph->numberOfNodes());
+          this->samplesForest.push_back(new_tree);
           dijkstra->runDijkstra(samplesForest.back(), graph, true, index);
+          this->totalNodes += new_tree->desc_vect[new_tree->getRoot()->node]+1;
+         // std::cout<<"Albero generato: \n";
+          //this->samplesForest.back()->printTree(this->samplesForest.back()->getRoot());
       }
       this->num_samples += Samples;
   }
@@ -64,11 +65,17 @@ void SamPG::updateForest(int node){
             maxNode = this->samplesForest[i]->direct_acc[node];
             //std::cout<<"PRIMA"<<"\n";
             //samplesForest[i]->printTree(samplesForest[i]->getRoot());
+            this->totalNodes -= samplesForest[i]->desc_vect[node];
+
             samplesForest[i]->deleteSubTree(maxNode);
             //std::cout<<"DOPO"<<"\n";
             //samplesForest[i]->printTree(samplesForest[i]->getRoot());
         }
 
+}
+
+int SamPG::getTotalNodes() {
+    return this->totalNodes;
 }
 
 

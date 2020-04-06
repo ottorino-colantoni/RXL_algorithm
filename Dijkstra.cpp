@@ -35,8 +35,10 @@ void Dijkstra::runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph, bool pru
         int distance = pq->top().prio;
         //rimozione elemento dallo heap
         pq->pop();
-        if(pruned){
+        if(pruned && current!=source){
             if(index->query(source, current) <= distance){
+                //std::cout<<"QUERY: "<<index->query(source, current)<<"\n";
+                //std::cout<<"Distanza: "<<distance<<"\n";
                 continue;
             }
         }

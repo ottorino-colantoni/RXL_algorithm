@@ -6,12 +6,18 @@
 #include "Dijkstra.h"
 #include <networkit/graph/Graph.hpp>
 #include "Labeling.h"
+#include "BestRandom.h"
 
 #ifndef SAMPG_H
 #define SAMPG_H
 
 
 class SamPG {
+
+private:
+
+    BestRandom* random_roots;
+    int totalNodes;
 
 
 public:
@@ -23,6 +29,8 @@ public:
     SamPG();
 
     SamPG(int k);
+
+    int getTotalNodes();
 
     void createForest(NetworKit::Graph* graph);
 
