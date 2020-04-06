@@ -23,9 +23,10 @@ class Tree{
 private:
 
     treeNode treeRoot;
-    std::vector<int> desc_vect;
 
 public:
+
+    std::vector<int> desc_vect;
 
     std::vector<treeNode*> direct_acc;
 

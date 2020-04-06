@@ -3,6 +3,7 @@
 //
 
 #include "SamPG.h"
+#include "mytimer.h"
 
 
 SamPG::SamPG(){};
@@ -21,20 +22,22 @@ void SamPG::createForest(NetworKit::Graph* graph){
 }
 
 int SamPG::maxDescNode(){
-    std::vector<int> counters(this->samplesForest[0]->getDescVect().size(),0);
-    for (int i = 0; i < this->num_samples ; ++i) {
-        for(int j = 0; j < this->samplesForest[0]->getDescVect().size(); j++){
-            counters[j] += this->samplesForest[i]->getDescVect()[j];
+    std::vector<int> counters(this->samplesForest[0]->desc_vect.size(),0);
+    int roundNode;
+    int max = 0;
+    mytimer t;
+    t.restart();
+    for (int i = 0; i < this->samplesForest[0]->desc_vect.size() ; i++) {
+        for(int j = 0; j < this->samplesForest.size(); j++){
+            counters[i] += this->samplesForest[j]->desc_vect[i];
+        }
+        if(counters[i]>=max){
+            max = counters[i];
+            roundNode = i;
         }
     }
-	int roundNode= 0;
-    for(int y=1;y<counters.size();y++){
-        if(counters[roundNode]<=counters[y]){
-            roundNode=y;
-        }
-    }
-    std::cout<<"MAX DISC = "<<counters[roundNode]<<"\n";
-	return roundNode;
+    std::cout<<"tempo double for max: "<<t.elapsed();
+    return roundNode;
 
 }
 

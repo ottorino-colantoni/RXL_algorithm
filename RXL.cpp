@@ -11,14 +11,15 @@
 #include "SamPG.h"
 #include "networkit/graph/Graph.hpp"
 #include <stdio.h>
+#include "mytimer.h"
 #include <omp.h>
 
 
 
 int main(){
-    int k = 3;
+    int k = 50;
     NetworKit::Graph *graph;
-    Auxiliary::read("graph1.hist", false, &graph);
+    Auxiliary::read("graph.hist", false, &graph);
 
     SamPG *spg = new SamPG(k);
     spg->createForest(graph);
@@ -30,19 +31,29 @@ int main(){
     int maxprec = -1;
 
     for (int i = 0; i < graph->numberOfNodes(); i++) {
+        mytimer timercounter;
 
+        timercounter.restart();
         max = spg->maxDescNode();
+        double e = timercounter.elapsed();
+        std::cout<<"tempo calcolo max: "<<e<<"\n";
         if (max == maxprec){
             break;
         }
         std::cout << "nodo con più discendenti " << max << "\n";
         lt->add_node_to_keeper(max, i);
 
+        timercounter.restart();
         lt->weighted_build_RXL();
+        e = timercounter.elapsed();
+        std::cout<<"tempo calcolo label: "<<e<<"\n";
 
+        timercounter.restart();
         spg->updateForest(max);
+        e = timercounter.elapsed();
+        std::cout<<"tempo calcolo updateForest: "<<e<<"\n";
         if (i % 1== 0) {
-            spg->encreaseForest(2, graph, labeling);
+            spg->encreaseForest(10, graph, labeling);
         }
         maxprec = max;
 
@@ -51,7 +62,7 @@ int main(){
 
     std::cout << "numero di label  :" << labeling->getNumberOfLabelEntries() << "\n";
     std::cout << "distanza nodo 3-0 :" << labeling->query(3, 0) << "\n";
-    labeling->printInLabels();
+    //labeling->printInLabels();
 
 
     /*

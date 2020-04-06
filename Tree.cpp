@@ -42,7 +42,6 @@ void Tree::addNode(treeNode* node, treeNode* father){
 
     node->father = father;
     father->children.push_back(node);
-    encreaseDescendants(node->father);
 }
 
 void Tree::encreaseDescendants(treeNode* node){
@@ -76,6 +75,7 @@ void Tree::computeDescendants(treeNode* node){
         descendants += node->children[i]->num_of_descendants;
     }
     node->num_of_descendants = descendants;
+    this->desc_vect[node->node] = descendants;
 }
 
 
@@ -87,7 +87,6 @@ void Tree::removeChild(treeNode* child){
         for (int i = 0; i < size; i++) {
             if (child->node == child->father->children[i]->node){
                 child->father->children.erase(child->father->children.begin()+i);
-                decreaseDescendants(child->father, 1);
                 child->father = NULL;
                 break;
             }
@@ -104,7 +103,6 @@ void Tree::updateFather(treeNode* father, treeNode* child){
     removeChild(child);
     child->father = father;
     father->children.push_back(child);
-    encreaseDescendants(child->father);
 }
 
 

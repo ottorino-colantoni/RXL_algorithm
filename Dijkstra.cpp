@@ -60,4 +60,5 @@ void Dijkstra::runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph, bool pru
             }
         });
     }
+    treeDijkstra->computeDescendants(treeDijkstra->getRoot());
 }
