@@ -26,7 +26,6 @@ private:
 
 public:
 
-    std::vector<int> desc_vect;
 
     std::vector<treeNode*> direct_acc;
 
@@ -36,17 +35,15 @@ public:
 
     treeNode* getRoot();
 
-    std::vector<int> getDescVect();
-
     void encreaseDescendants(treeNode* node);
 
-    void decreaseDescendants(treeNode* node, int num_of_descendants);
+    void decreaseDescendants(treeNode* node, int num_of_descendants, std::vector<std::vector<int>> &counters,int k,int c);
 
     void addNode(treeNode* node, treeNode* father);
 
     //void addDescendant(treeNode* father, treeNode* child);
 
-    void computeDescendants(treeNode* node);
+    void computeDescendants(treeNode* node , std::vector<std::vector<int>> &counters, int k, int c);
 
     //void removeSubtree(int node);
 
@@ -58,9 +55,9 @@ public:
 
     treeNode* DFS(int node);
 
-    void removeTree(treeNode* root);
+    void removeTree(treeNode* root , std::vector<std::vector<int>> &counters, int k, int c);
 
-    void deleteSubTree(treeNode* root);
+    void deleteSubTree(treeNode* root , std::vector<std::vector<int>> &counters, int k, int c);
 };
 
 #endif //EXAMPLE_TREE_H

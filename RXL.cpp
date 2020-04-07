@@ -18,10 +18,14 @@
 
 int main(){
     int k = 50;
+	int c = 8;
     NetworKit::Graph *graph;
     Auxiliary::read("graph.hist", false, &graph);
-    SamPG *spg = new SamPG(k);
+    SamPG *spg = new SamPG(k,c);
     spg->createForest(graph);
+
+  
+
     std::pair <std::vector<custom_node>, std::vector<custom_node>> keeper;
     keeper.second.resize(graph->upperNodeIdBound());
     Labeling *labeling = new Labeling(graph->isDirected());
@@ -33,7 +37,7 @@ int main(){
 
         timercounter.restart();
         max = spg->maxDescNode();
-        /*if (max == maxprec){
+       /*if (max == maxprec){
             break;
         }*/
         std::cout<<"tempo max: "<<timercounter.elapsed()<<"\n";
@@ -48,9 +52,9 @@ int main(){
         spg->updateForest(max);
         std::cout<<"tempo update: "<<timercounter.elapsed()<<"\n";
         std::cout<<spg->getTotalNodes()<<"\n";
-        if(i % 2 == 0) {
+        if(i % 10 == 0) {
             timercounter.restart();
-            spg->encreaseForest(1, graph, labeling);
+            spg->encreaseForest(2, graph, labeling);
             std::cout<<"tempo encrease: "<<timercounter.elapsed()<<"\n";
         }
     }
@@ -58,10 +62,25 @@ int main(){
 
     std::cout << "numero di label  :" << labeling->getNumberOfLabelEntries() << "\n";
     std::cout << "distanza nodo 3-0 :" << labeling->query(1, 0) << "\n";
-    //labeling->printInLabels();
+//    labeling->printInLabels();
 
 
-    /*
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+ /*
     NetworKit::Graph* graph;
     Auxiliary::read("graph1.hist", false, &graph);
     Dijkstra d;
@@ -87,4 +106,47 @@ int main(){
 
     
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*di controllo e prove
+  for(int i=0;i<spg->num_samples;i++){
+	std::cout<<" albero i: \n";
+	spg->samplesForest[i]->printTree(spg->samplesForest[i]->getRoot());
+	}
+
+
+	for(int i=0;i<spg->counters[0].size();i++)
+	{
+	std::cout<<"contatore :"<<i << "valore :" << spg->counters[0][i] <<"\n";
+	}
+	
+	spg->updateForest(3);
+
+	
+	for(int i=0;i<spg->num_samples;i++){
+	std::cout<<" albero i dopo update: \n";
+	spg->samplesForest[i]->printTree(spg->samplesForest[i]->getRoot());
+	}
+
+
+	for(int i=0;i<spg->counters[0].size();i++)
+	{
+	std::cout<<"contatore dopo update:"<<i << "valore :" << spg->counters[0][i] <<"\n";
+	}
+	
+	int max = spg->maxDescNode();
+
+*/

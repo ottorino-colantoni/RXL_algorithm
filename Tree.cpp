@@ -20,7 +20,6 @@ Tree::Tree(int source, int size){
     r.node = source;
     r.father = NULL;
     this->treeRoot = r;
-    this->desc_vect.resize(size);
     this->direct_acc.resize(size);
 }
 
@@ -31,12 +30,6 @@ treeNode* Tree::getRoot(){
     return &treeRoot;
 }
 
-std::vector<int> Tree::getDescVect(){
-    return this->desc_vect;
-}
-
-
-
 //funziona
 void Tree::addNode(treeNode* node, treeNode* father){
 
@@ -46,17 +39,19 @@ void Tree::addNode(treeNode* node, treeNode* father){
 
 void Tree::encreaseDescendants(treeNode* node){
     node->num_of_descendants += 1;
-    this->desc_vect[node->node] = node->num_of_descendants;
     if(node->father != NULL){ // se il nodo non è la radice, cioè non ha un genitore
         encreaseDescendants(node->father);
     }
 }
 
-void Tree::decreaseDescendants(treeNode* node ,int numdesc){
+void Tree::decreaseDescendants(treeNode* node ,int numdesc, std::vector<std::vector<int>> &counters, int j, int c){
     node->num_of_descendants -= numdesc;
-    this->desc_vect[node->node] = node->num_of_descendants;
+    for(int i=0; i<c;i++){
+	if(i == j % c )
+	counters[i][node->node] -= numdesc;
+	  }
     if(node->father != NULL){
-        decreaseDescendants(node->father,numdesc);
+        decreaseDescendants(node->father,numdesc, counters, j, c);
     }
 }
 
@@ -64,18 +59,21 @@ void Tree::decreaseDescendants(treeNode* node ,int numdesc){
 
 
 //funziona
-void Tree::computeDescendants(treeNode* node){
+void Tree::computeDescendants(treeNode* node, std::vector<std::vector<int>> &counters, int j,int c){
     if(!node->children.empty()){
         for(int i = 0; i<node->children.size(); i++){
-            computeDescendants(node->children[i]);
+            computeDescendants(node->children[i], counters,j,c);
         }
     }
     int descendants = node->children.size();
     for(int i = 0; i < node->children.size(); i++){
         descendants += node->children[i]->num_of_descendants;
     }
+	for(int i=0; i<c;i++){
+	if(i == j % c )
+	counters[i][node->node] += descendants;
+	}
     node->num_of_descendants = descendants;
-    this->desc_vect[node->node] = descendants;
 }
 
 
@@ -158,15 +156,18 @@ treeNode* Tree::DFS(int node){
 }
 
 // Questa funzione elimina tutto l'albero radicato nel nodo root compresa la radice
-void Tree::removeTree(treeNode* root){
+void Tree::removeTree(treeNode* root, std::vector<std::vector<int>> &counters,int j,int c){
 
     if(!root->children.empty()){
         for(int i = 0; i<root->children.size(); i++){
-            removeTree(root->children[i]);
+            removeTree(root->children[i], counters, j, c);
         }
     }
-
-    this->desc_vect[root->node] = 0;
+	//std::cout<<"discendnti di : "<<root->node<<"da rimuovere"<<root->num_of_descendants<<"\n";
+	for(int i=0; i<c;i++){
+	if(i == j % c )
+	counters[i][root->node] -= root->num_of_descendants;
+	}
     this->direct_acc[root->node] = NULL;
     root = NULL;
 
@@ -174,13 +175,13 @@ void Tree::removeTree(treeNode* root){
 }
 
 // Questa funzione rimuove tutti i sottoalberi radicati in un nodo
-void Tree::deleteSubTree(treeNode* root){
+void Tree::deleteSubTree(treeNode* root, std::vector<std::vector<int>> &counters,int j,int c){
     if(root != NULL) {
         for (int i = 0; i < root->children.size(); i++) {
-            removeTree(root->children[i]);
+            removeTree(root->children[i], counters,j,c);
 
         }
-        decreaseDescendants(root, root->num_of_descendants);
+        decreaseDescendants(root, root->num_of_descendants, counters,j,c);
         root->num_of_descendants = 0;
         root->children.resize(0);
     }

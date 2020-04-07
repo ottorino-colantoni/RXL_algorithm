@@ -24,11 +24,15 @@ public:
 
 
     int num_samples;
+	int num_counters;
     std::vector<Tree*> samplesForest;
+
+
+	std::vector<std::vector<int>> counters;
 
     SamPG();
 
-    SamPG(int k);
+    SamPG(int k, int c);
 
     int getTotalNodes();
 
