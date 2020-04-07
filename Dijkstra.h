@@ -10,9 +10,9 @@
 #include "Labeling.h"
 
 struct heap_dijkstra {
-    int node;
+    treeNode* node;
     int prio;
-    heap_dijkstra(int n,int w)
+    heap_dijkstra(treeNode* n,int w)
     {
         node = n;
         prio = w;

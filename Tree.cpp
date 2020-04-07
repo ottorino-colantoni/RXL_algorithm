@@ -20,7 +20,6 @@ Tree::Tree(int source, int size){
     r.node = source;
     r.father = NULL;
     this->treeRoot = r;
-    this->direct_acc.resize(size);
 }
 
 
@@ -168,7 +167,6 @@ void Tree::removeTree(treeNode* root, std::vector<std::vector<int>> &counters,in
 	if(i == j % c )
 	counters[i][root->node] -= root->num_of_descendants;
 	}
-    this->direct_acc[root->node] = NULL;
     root = NULL;
 
 
@@ -182,7 +180,6 @@ void Tree::deleteSubTree(treeNode* root, std::vector<std::vector<int>> &counters
 
         }
         decreaseDescendants(root, root->num_of_descendants, counters,j,c);
-        root->num_of_descendants = 0;
         root->children.resize(0);
     }
 }

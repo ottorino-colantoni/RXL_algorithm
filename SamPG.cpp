@@ -41,28 +41,26 @@ int SamPG::maxDescNode(){
 
 		for(int j=0; j <this->num_counters; j++){
 
-		 temporarymax += counters[j][i];
-		 if(counters[j][i]>useless_value1){useless_value1= counters[j][i];}
+		    temporarymax += counters[j][i];
+		    if(counters[j][i]>useless_value1){useless_value1= counters[j][i];}
 
 		}
-	temporarymax-=useless_value1;
-	temporarymax = (temporarymax/this->num_counters-1);
-	if(temporarymax>= max){
-	max=temporarymax;
-	roundNode=i;
-	}
+	    temporarymax-=useless_value1;
+	    temporarymax = (temporarymax/(this->num_counters-1));
+	    std::cout<<"tempMax: "<<temporarymax<<"\n";
+	    if(temporarymax> max){
+	        max=temporarymax;
+	        roundNode=i;
+	    }
 
 	temporarymax=0;
 	useless_value1=0;
-	
-	
-
-
 
 	}
 
-  assert(roundNode>=0 && roundNode<counters[0].size());
-  std::cout << "valore con più discendenti" << roundNode<<"\n";
+   assert(roundNode>=0 && roundNode<counters[0].size());
+   std::cout<<roundNode<<"\n";
+
   return roundNode;
 
 
@@ -90,16 +88,22 @@ void SamPG::encreaseForest(int Samples, NetworKit::Graph* graph, Labeling* index
 void SamPG::updateForest(int node){
 
     treeNode* maxNode;
-        for (int i = 0; i < num_samples; i++) {
-            maxNode = this->samplesForest[i]->direct_acc[node];
-            //std::cout<<"PRIMA"<<"\n";
-            //samplesForest[i]->printTree(samplesForest[i]->getRoot());
-            //this->totalNodes -= samplesForest[i]->desc_vect[node];
-            samplesForest[i]->deleteSubTree(maxNode,this->counters, i, this->num_counters);
-            //std::cout<<"DOPO"<<"\n";
-            //samplesForest[i]->printTree(samplesForest[i]->getRoot());
+    int i = 0;
+    while(i<num_samples){
+        if(samplesForest[i]->getRoot()->num_of_descendants != 0) {
+            std::cout<<"numero di discendenti radice "<<i<<": "<<samplesForest[i]->getRoot()->num_of_descendants<<"\n";
+            maxNode = this->samplesForest[i]->DFS(node);
+            samplesForest[i]->deleteSubTree(maxNode, this->counters, i, this->num_counters);
+            i++;
         }
-
+        else{
+            std::cout<<"VOGLIO CANCELLARE UN ALBERO!!\n";
+            samplesForest[i] = samplesForest.back();
+            this->num_samples -=1;
+            samplesForest.resize(this->num_samples);
+        }
+    }
+    std::cout<<"numero alberi nella foresta: "<<num_samples<<"\n";
 }
 
 int SamPG::getTotalNodes() {
