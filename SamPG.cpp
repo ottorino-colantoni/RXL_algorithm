@@ -27,7 +27,6 @@ void SamPG::createForest(NetworKit::Graph* graph){
         this->samplesForest.push_back(new_tree);
         dijkstra->runDijkstra(samplesForest.back(), graph);
 		new_tree->computeDescendants(new_tree->getRoot(),this->counters, i, this->num_counters);
-       // this->totalNodes += new_tree->desc_vect[new_tree->getRoot()->node]+1;
     }
 }
 
@@ -81,11 +80,8 @@ void SamPG::encreaseForest(int Samples, NetworKit::Graph* graph, Labeling* index
           Tree* new_tree = new Tree(this->random_roots->random(), graph->numberOfNodes());
           this->samplesForest.push_back(new_tree);
           dijkstra->runDijkstra(samplesForest.back(), graph, true, index);
-          //this->totalNodes += new_tree->desc_vect[new_tree->getRoot()->node]+1;
-		  int j=this->num_samples + i;
+		  int j = this->num_samples + i;
 		  new_tree->computeDescendants(new_tree->getRoot(),counters, j, this->num_counters);
-          //std::cout<<"Albero generato: \n";
-          //this->samplesForest.back()->printTree(this->samplesForest.back()->getRoot());
       }
       this->num_samples += Samples;
   }

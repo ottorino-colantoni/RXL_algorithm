@@ -34,19 +34,17 @@ int main(){
     int max;
 	int maxprec;
 
-    for (int i = 0; i < graph->numberOfNodes(); i++) {
+    for (int i = 0; i < graph->numberOfNodes()-k; i++) {
         max = spg->maxDescNode();
-		if(max==maxprec){break;}
-		maxprec=max;
-
         std::cout << "nodo con più discendenti " << max << "\n";
         lt->add_node_to_keeper(max, i);
         lt->weighted_build_RXL();
         spg->updateForest(max);
-	
-        if(i % 10 == 0) {
-            spg->encreaseForest(4, graph, labeling);
+
+        if(i % 1 == 0) {
+            spg->encreaseForest(1, graph, labeling);
         }
+        std::cout<<i<<"-";
     }
 
     std::cout << "numero di label  :" << labeling->getNumberOfLabelEntries() << "\n";

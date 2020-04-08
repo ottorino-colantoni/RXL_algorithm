@@ -3,6 +3,7 @@
 //
 
 #include "BestRandom.h"
+#include <iostream>
 
 BestRandom::BestRandom() {}
 

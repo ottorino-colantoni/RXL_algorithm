@@ -45,10 +45,7 @@ void Tree::encreaseDescendants(treeNode* node){
 
 void Tree::decreaseDescendants(treeNode* node ,int numdesc, std::vector<std::vector<int>> &counters, int j, int c){
     node->num_of_descendants -= numdesc;
-    for(int i=0; i<c;i++){
-	if(i == j % c )
-	counters[i][node->node] -= numdesc;
-	  }
+	counters[j % c][node->node] -= numdesc;
     if(node->father != NULL){
         decreaseDescendants(node->father,numdesc, counters, j, c);
     }
@@ -68,10 +65,7 @@ void Tree::computeDescendants(treeNode* node, std::vector<std::vector<int>> &cou
     for(int i = 0; i < node->children.size(); i++){
         descendants += node->children[i]->num_of_descendants;
     }
-	for(int i=0; i<c;i++){
-	if(i == j % c )
-	counters[i][node->node] += descendants;
-	}
+	counters[j % c][node->node] += descendants;
     node->num_of_descendants = descendants;
 }
 
@@ -163,10 +157,7 @@ void Tree::removeTree(treeNode* root, std::vector<std::vector<int>> &counters,in
         }
     }
 	//std::cout<<"discendnti di : "<<root->node<<"da rimuovere"<<root->num_of_descendants<<"\n";
-	for(int i=0; i<c;i++){
-	if(i == j % c )
-	counters[i][root->node] -= root->num_of_descendants;
-	}
+	counters[j % c][root->node] -= root->num_of_descendants;
     root = NULL;
 
 

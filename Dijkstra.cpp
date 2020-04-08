@@ -34,22 +34,17 @@ void Dijkstra::runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph, bool pru
         int distance = pq->top().prio;
         //rimozione elemento dallo heap
         pq->pop();
-        if(pruned && current->node!=source){
-            if(index->query(source, current->node) <= distance){
-                //std::cout<<"QUERY: "<<index->query(source, current)<<"\n";
-                //std::cout<<"Distanza: "<<distance<<"\n";
-                continue;
-            }
-        }
         graph->forNeighborsOf(current->node, [&](int v) {
             wuv = graph -> weight(current->node,v);
             if(distances[v] == INF) {
-                distances[v] = distance + wuv;
                 // il nodo è stato trovato per la prima volta quindi faccio addNode poi lo aggiungo alla tabella hash
-                treeNode* new_child = new treeNode();
-                new_child->node=v;
-                handles[v] = pq->push(heap_dijkstra(new_child, distances[v]));
-                treeDijkstra->addNode(new_child,current);
+                if(!pruned || (pruned && index->query(source,v)>(distance+wuv))) {
+                    distances[v] = distance + wuv;
+                    treeNode *new_child = new treeNode();
+                    new_child->node = v;
+                    handles[v] = pq->push(heap_dijkstra(new_child, distances[v]));
+                    treeDijkstra->addNode(new_child, current);
+                }
             }
             else if(wuv+distance< distances[v]) {
                 distances[v] = distance + wuv;
@@ -61,3 +56,14 @@ void Dijkstra::runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph, bool pru
         });
     }
 }
+
+/*void Dijkstra::runCustomDijkstra(Tree* Dijkstra, Networkit::Graph* graph, Labeling* index){
+    boost::heap::fibonacci_heap<heap_dijkstra>* pq = new boost::heap::fibonacci_heap<heap_dijkstra>();
+    boost::heap::fibonacci_heap<heap_dijkstra>::handle_type* handles =
+            new boost::heap::fibonacci_heap<heap_dijkstra>::handle_type[graph->upperNodeIdBound()];
+    std::vector<int> distances;
+    int size= graph->numberOfNodes();
+    distances.resize(size,INF);
+    int source = treeDijkstra->getRoot()->node;
+    distances[source] = 0;
+}*/

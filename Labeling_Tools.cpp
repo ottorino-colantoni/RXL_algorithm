@@ -854,11 +854,6 @@ void Labeling_Tools::weighted_build_RXL(){
 
     ProgressStream builder_(graph->numberOfNodes());
     std::pair<custom_node,custom_weight> encoded = std::make_pair(NULL_NODE,NULL_WEIGHT);
-    if(graph->isDirected())
-        builder_.label() << "Building WEIGHTED DIRECTED labeling for " <<graph->numberOfNodes()<< " vertices";
-    else
-        builder_.label() << "Building WEIGHTED UNDIRECTED labeling for " <<graph->numberOfNodes()<< " vertices";
-
 
     custom_node s = lastNode();
     if(!this->graph->hasNode(s))
@@ -886,8 +881,8 @@ void Labeling_Tools::weighted_build_RXL(){
         status_prio_que[current]=2;
         weighted_pop();
 
-        //if(node_to_index(current)<order_of_source)
-        //	continue;
+        if(node_to_index(current)<node_to_index(s))
+        	continue;
 		
         index->query(s,current,current_distance,encoded);
         labeling_distance = encoded.second;
