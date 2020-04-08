@@ -12,6 +12,7 @@ SamPG::SamPG(int k, int c){
     this->num_samples = k;
 	this->num_counters= c;
 	counters.resize(c);
+	this->zero=false;
 	
 }
 
@@ -36,6 +37,8 @@ int SamPG::maxDescNode(){
    int max=0;
    int temporarymax=0;
    int roundNode=0;
+   int roundNode_for_zero=0;
+   int max_for_zero=0;
 
    for(int i = 0; i< counters[0].size(); i++){
 
@@ -45,9 +48,14 @@ int SamPG::maxDescNode(){
 		    if(counters[j][i]>useless_value1){useless_value1= counters[j][i];}
 
 		}
+
+		if(temporarymax> max_for_zero){
+	        max_for_zero=temporarymax;
+	        roundNode_for_zero=i;
+	    }
+
 	    temporarymax-=useless_value1;
 	    temporarymax = (temporarymax/(this->num_counters-1));
-	    std::cout<<"tempMax: "<<temporarymax<<"\n";
 	    if(temporarymax> max){
 	        max=temporarymax;
 	        roundNode=i;
@@ -55,14 +63,12 @@ int SamPG::maxDescNode(){
 
 	temporarymax=0;
 	useless_value1=0;
-
 	}
 
-   assert(roundNode>=0 && roundNode<counters[0].size());
-   std::cout<<roundNode<<"\n";
 
-  return roundNode;
-
+  if(roundNode == 0 ){this->zero=true;}
+  if(zero && roundNode == 0){return roundNode_for_zero;}
+  else{return roundNode;}
 
 }
 
@@ -91,24 +97,18 @@ void SamPG::updateForest(int node){
     int i = 0;
     while(i<num_samples){
         if(samplesForest[i]->getRoot()->num_of_descendants != 0) {
-            std::cout<<"numero di discendenti radice "<<i<<": "<<samplesForest[i]->getRoot()->num_of_descendants<<"\n";
             maxNode = this->samplesForest[i]->DFS(node);
             samplesForest[i]->deleteSubTree(maxNode, this->counters, i, this->num_counters);
             i++;
         }
         else{
-            std::cout<<"VOGLIO CANCELLARE UN ALBERO!!\n";
             samplesForest[i] = samplesForest.back();
             this->num_samples -=1;
             samplesForest.resize(this->num_samples);
         }
     }
-    std::cout<<"numero alberi nella foresta: "<<num_samples<<"\n";
 }
 
-int SamPG::getTotalNodes() {
-    return this->totalNodes;
-}
 
 
 

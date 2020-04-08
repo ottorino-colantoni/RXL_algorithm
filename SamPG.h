@@ -18,6 +18,7 @@ private:
 
     BestRandom* random_roots;
     int totalNodes;
+	bool zero;
 
 
 public:
