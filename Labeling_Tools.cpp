@@ -871,6 +871,7 @@ void Labeling_Tools::weighted_build_RXL(){
     assert(weighted_empty());
     weighted_insert(s,0);
 
+    std::cout<<"labels from:"<<s<<"\n";
     custom_node current;
     custom_weight current_distance;
     custom_weight labeling_distance;
@@ -894,7 +895,7 @@ void Labeling_Tools::weighted_build_RXL(){
         index->in_labels[current].back().d = current_distance;
         index->in_labels[current].push_back(LabelEntry(NULL_NODE,NULL_WEIGHT));
 
-        //added_per_visit[keeper.first.size()-1]++;
+        added_per_visit[keeper.first.size()-1]++;
 
         weighted_relax(current,current_distance,true);
 
@@ -902,29 +903,6 @@ void Labeling_Tools::weighted_build_RXL(){
 
     weighted_reset();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

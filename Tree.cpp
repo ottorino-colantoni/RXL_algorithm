@@ -158,6 +158,7 @@ void Tree::removeTree(treeNode* root, std::vector<std::vector<int>> &counters,in
     }
 	//std::cout<<"discendnti di : "<<root->node<<"da rimuovere"<<root->num_of_descendants<<"\n";
 	counters[j % c][root->node] -= root->num_of_descendants;
+    root->num_of_descendants = 0;
     root = NULL;
 
 

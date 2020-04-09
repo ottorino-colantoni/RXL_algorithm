@@ -11,9 +11,9 @@ SamPG::SamPG(){};
 SamPG::SamPG(int k, int c){
     this->num_samples = k;
 	this->num_counters= c;
-	counters.resize(c);
+	this->counters.resize(c);
 	this->zero=false;
-	
+	this->totalNodes = 0;
 }
 
 void SamPG::createForest(NetworKit::Graph* graph){
@@ -27,6 +27,7 @@ void SamPG::createForest(NetworKit::Graph* graph){
         this->samplesForest.push_back(new_tree);
         dijkstra->runDijkstra(samplesForest.back(), graph);
 		new_tree->computeDescendants(new_tree->getRoot(),this->counters, i, this->num_counters);
+		this->totalNodes += new_tree->getRoot()->num_of_descendants+1;
     }
 }
 
@@ -43,8 +44,8 @@ int SamPG::maxDescNode(){
 
 		for(int j=0; j <this->num_counters; j++){
 
-		    temporarymax += counters[j][i];
-		    if(counters[j][i]>useless_value1){useless_value1= counters[j][i];}
+		    temporarymax += this->counters[j][i];
+		    if(this->counters[j][i]>useless_value1){useless_value1= counters[j][i];}
 
 		}
 
@@ -79,9 +80,10 @@ void SamPG::encreaseForest(int Samples, NetworKit::Graph* graph, Labeling* index
       for (int i = 0; i < Samples; i++) {
           Tree* new_tree = new Tree(this->random_roots->random(), graph->numberOfNodes());
           this->samplesForest.push_back(new_tree);
-          dijkstra->runDijkstra(samplesForest.back(), graph, true, index);
+          dijkstra->runDijkstra(this->samplesForest.back(), graph, true, index);
 		  int j = this->num_samples + i;
 		  new_tree->computeDescendants(new_tree->getRoot(),counters, j, this->num_counters);
+		  this->totalNodes += new_tree->getRoot()->num_of_descendants + 1;
       }
       this->num_samples += Samples;
   }
@@ -90,22 +92,15 @@ void SamPG::encreaseForest(int Samples, NetworKit::Graph* graph, Labeling* index
 void SamPG::updateForest(int node){
 
     treeNode* maxNode;
-    int i = 0;
-    while(i<num_samples){
-        if(samplesForest[i]->getRoot()->num_of_descendants != 0) {
-            maxNode = this->samplesForest[i]->DFS(node);
-            samplesForest[i]->deleteSubTree(maxNode, this->counters, i, this->num_counters);
-            i++;
-        }
-        else{
-            samplesForest[i] = samplesForest.back();
-            this->num_samples -=1;
-            samplesForest.resize(this->num_samples);
-        }
+    for (int i = 0; i < samplesForest.size(); i++) {
+        maxNode = this->samplesForest[i]->DFS(node);
+        samplesForest[i]->deleteSubTree(maxNode, this->counters, i, this->num_counters);
     }
 }
 
-
+int SamPG::getTotalNodes() {
+    return this->totalNodes;
+}
 
 
 

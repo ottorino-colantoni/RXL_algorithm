@@ -13,11 +13,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a3c6d7e8-64eb-4178-8f51-6a05693d2115" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/LabelingRXL.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LabelingRXL.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BestRandom.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/BestRandom.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dijkstra.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Dijkstra.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Labeling_Tools.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Labeling_Tools.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RXL" beforeDir="false" afterPath="$PROJECT_DIR$/RXL" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RXL.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/RXL.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SamPG.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SamPG.cpp" afterDir="false" />
@@ -34,7 +34,88 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/RXL.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-11">
+              <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SamPG.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="81" column="50" selection-start-line="81" selection-start-column="50" selection-end-line="81" selection-end-column="50" />
+              <folding>
+                <element signature="e#40#58#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tree.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="36" column="1" selection-start-line="36" selection-end-line="36" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SamPG.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="335">
+              <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Labeling_Tools.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3499">
+              <caret line="625" column="41" selection-start-line="625" selection-start-column="20" selection-end-line="625" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Labeling_Tools.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="205" column="11" selection-start-line="205" selection-end-line="206" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LabelingRXL.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="453">
+              <caret line="78" selection-start-line="78" selection-end-line="78" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Immagine.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Dijkstra.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="214">
+              <caret line="39" column="117" selection-start-line="39" selection-start-column="117" selection-end-line="39" selection-end-column="117" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -45,7 +126,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>query</find>
       <find>generate</find>
       <find>hubs</find>
       <find>labeling</find>
@@ -62,14 +142,18 @@
       <find>NetworKit::Gra</find>
       <find>addnode</find>
       <find>compute</find>
-      <find>added_per_visit</find>
       <find>weighted</find>
       <find>pragma</find>
       <find>direct</find>
-      <find>cout</find>
       <find>source</find>
       <find>RXL</find>
       <find>j</find>
+      <find>cout</find>
+      <find>added_per_visit</find>
+      <find>query</find>
+      <find>status_prio_que</find>
+      <find>weighted_relax</find>
+      <find>encreaseDesc</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -91,14 +175,18 @@
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/Makefile" />
         <option value="$PROJECT_DIR$/BestRandom.cpp" />
-        <option value="$PROJECT_DIR$/Dijkstra.cpp" />
-        <option value="$PROJECT_DIR$/RXL.cpp" />
+        <option value="$PROJECT_DIR$/Labeling.cpp" />
         <option value="$PROJECT_DIR$/Tree.cpp" />
-        <option value="$PROJECT_DIR$/SamPG.cpp" />
         <option value="$PROJECT_DIR$/Labeling_Tools.cpp" />
+        <option value="$PROJECT_DIR$/LabelingRXL.h" />
+        <option value="$PROJECT_DIR$/LabelingRXL.cpp" />
+        <option value="$PROJECT_DIR$/Dijkstra.cpp" />
+        <option value="$PROJECT_DIR$/SamPG.cpp" />
+        <option value="$PROJECT_DIR$/RXL.cpp" />
       </list>
     </option>
   </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="70" />
     <option name="y" value="27" />
@@ -197,17 +285,20 @@
       <workItem from="1585992237075" duration="5205000" />
       <workItem from="1586009954389" duration="19000" />
       <workItem from="1586010981862" duration="15627000" />
-      <workItem from="1586352246121" duration="13659000" />
+      <workItem from="1586352246121" duration="13713000" />
+      <workItem from="1586375396529" duration="4923000" />
+      <workItem from="1586419727790" duration="10940000" />
+      <workItem from="1586442087885" duration="12448000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97855000" />
+    <option name="totallyTimeSpent" value="126220000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="70" y="27" width="1850" height="1053" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49917355" weight="0.28" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49917355" visible="true" weight="0.28777778" />
       <window_info id="Structure" order="1" sideWeight="0.5008264" side_tool="true" weight="0.27666667" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -219,7 +310,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3137255" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.31154683" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info active="true" anchor="bottom" id="Messages" order="11" visible="true" weight="0.32897604" />
       <window_info anchor="bottom" id="CMake" order="12" weight="0.32897604" />
@@ -255,17 +346,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/RXL.cpp</url>
-          <line>39</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../../example/Auxiliary.cpp">
@@ -309,16 +389,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Labeling.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
-          <folding>
-            <element signature="e#126#154#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CustomDataTypes.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
@@ -339,13 +409,6 @@
     <entry file="file://$PROJECT_DIR$/LabelEntry.cpp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Labeling_Tools.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="227" column="55" selection-start-line="227" selection-start-column="55" selection-end-line="227" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Auxiliary.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -361,13 +424,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/treeDijkstra.cpp" />
-    <entry file="file://$PROJECT_DIR$/Labeling.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2044">
-          <caret line="73" column="20" selection-start-line="73" selection-start-column="20" selection-end-line="73" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mytimer.h">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -375,13 +431,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SamPG.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -395,55 +444,19 @@
     <entry file="file://$PROJECT_DIR$/lux_scc1.bgr.hist">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Dijkstra.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/count.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/count.txt" />
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/4" />
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/3" />
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/2" />
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/5" />
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/RXL_algorithm.cbp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/RXL_algorithm.cbp" />
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RXL.dir/link.txt" />
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/Makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="12" selection-start-column="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/Makefile" />
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt" />
     <entry file="file://$PROJECT_DIR$/Makefile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Immagine.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SamPG.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-465">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="e#40#58#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -454,38 +467,103 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Dijkstra.cpp">
+    <entry file="file://$PROJECT_DIR$/graph.hist">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="40" column="64" selection-start-line="40" selection-start-column="64" selection-end-line="40" selection-end-column="64" />
+        <state relative-caret-position="450">
+          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Labeling.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
+          <folding>
+            <element signature="e#126#154#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dijkstra.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="2" selection-start-line="11" selection-end-line="25" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LabelingRXL.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Labeling.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-282">
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LabelingRXL.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="78" selection-start-line="78" selection-end-line="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Immagine.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Labeling_Tools.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="205" column="11" selection-start-line="205" selection-end-line="206" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Labeling_Tools.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="879" column="52" selection-start-line="879" selection-start-column="52" selection-end-line="879" selection-end-column="52" />
+        <state relative-caret-position="-3499">
+          <caret line="625" column="41" selection-start-line="625" selection-start-column="20" selection-end-line="625" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graph.hist">
+    <entry file="file://$PROJECT_DIR$/SamPG.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="13" lean-forward="true" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+        <state relative-caret-position="335">
+          <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tree.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="154" column="30" selection-start-line="154" selection-start-column="30" selection-end-line="154" selection-end-column="30" />
+        <state>
+          <caret line="36" column="1" selection-start-line="36" selection-end-line="36" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SamPG.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="81" column="50" selection-start-line="81" selection-start-column="50" selection-end-line="81" selection-end-column="50" />
+          <folding>
+            <element signature="e#40#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dijkstra.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="39" column="117" selection-start-line="39" selection-start-column="117" selection-end-line="39" selection-end-column="117" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RXL.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="36" column="48" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
+        <state relative-caret-position="-11">
+          <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
         </state>
       </provider>
     </entry>

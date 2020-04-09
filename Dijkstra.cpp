@@ -56,14 +56,3 @@ void Dijkstra::runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph, bool pru
         });
     }
 }
-
-/*void Dijkstra::runCustomDijkstra(Tree* Dijkstra, Networkit::Graph* graph, Labeling* index){
-    boost::heap::fibonacci_heap<heap_dijkstra>* pq = new boost::heap::fibonacci_heap<heap_dijkstra>();
-    boost::heap::fibonacci_heap<heap_dijkstra>::handle_type* handles =
-            new boost::heap::fibonacci_heap<heap_dijkstra>::handle_type[graph->upperNodeIdBound()];
-    std::vector<int> distances;
-    int size= graph->numberOfNodes();
-    distances.resize(size,INF);
-    int source = treeDijkstra->getRoot()->node;
-    distances[source] = 0;
-}*/
