@@ -829,7 +829,7 @@ void Labeling_Tools::weighted_build(){
 
 			if(labeling_distance<=current_distance)
 				continue;
-
+	
 			index->out_labels[current].back().v = order_of_source;
 			index->out_labels[current].back().d = current_distance;
 			index->out_labels[current].push_back(LabelEntry(NULL_NODE,NULL_WEIGHT));
@@ -891,7 +891,8 @@ void Labeling_Tools::weighted_build_RXL(){
         if(labeling_distance<=current_distance){
             continue;
 	}
-        index->in_labels[current].back().v = s;		//order_of_source;
+		
+        index->in_labels[current].back().v = this->index->node_to_index(s);		
         index->in_labels[current].back().d = current_distance;
         index->in_labels[current].push_back(LabelEntry(NULL_NODE,NULL_WEIGHT));
 
