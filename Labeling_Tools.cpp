@@ -870,8 +870,6 @@ void Labeling_Tools::weighted_build_RXL(){
     //FORWARD VISIT
     assert(weighted_empty());
     weighted_insert(s,0);
-
-    std::cout<<"labels from:"<<s<<"\n";
     custom_node current;
     custom_weight current_distance;
     custom_weight labeling_distance;

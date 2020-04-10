@@ -1,11 +1,6 @@
-//
-// Created by f4b3r on 28/03/20.
-//
-
 #include "Tree.h"
 #include <iostream>
 #include <queue>
-//#include </usr/lib/include/boost/lockfree/queque.hpp>
 
 
 
@@ -13,70 +8,56 @@
 Tree::Tree(){}
 
 
-
-//funziona
-Tree::Tree(int source, int size){
+Tree::Tree(int source){
     treeNode r;
-    r.node = source;
+    r.ID = source;
     r.father = NULL;
     this->treeRoot = r;
 }
 
 
-
-//funziona
 treeNode* Tree::getRoot(){
     return &treeRoot;
 }
 
-//funziona
+
 void Tree::addNode(treeNode* node, treeNode* father){
 
     node->father = father;
     father->children.push_back(node);
 }
 
-void Tree::encreaseDescendants(treeNode* node){
-    node->num_of_descendants += 1;
-    if(node->father != NULL){ // se il nodo non è la radice, cioè non ha un genitore
-        encreaseDescendants(node->father);
-    }
-}
 
-void Tree::decreaseDescendants(treeNode* node ,int numdesc, std::vector<std::vector<int>> &counters, int j, int c){
+void Tree::decreaseDescendants(treeNode* node ,int numdesc, std::vector<int> &counter){
     node->num_of_descendants -= numdesc;
-	counters[j % c][node->node] -= numdesc;
+    counter[node->ID] -= numdesc;
     if(node->father != NULL){
-        decreaseDescendants(node->father,numdesc, counters, j, c);
+        decreaseDescendants(node->father,numdesc, counter);
     }
 }
 
 
-
-
-//funziona
-void Tree::computeDescendants(treeNode* node, std::vector<std::vector<int>> &counters, int j,int c){
+void Tree::computeDescendants(treeNode* node, std::vector<int> &counter){
     if(!node->children.empty()){
         for(int i = 0; i<node->children.size(); i++){
-            computeDescendants(node->children[i], counters,j,c);
+            computeDescendants(node->children[i], counter);
         }
     }
     int descendants = node->children.size();
     for(int i = 0; i < node->children.size(); i++){
         descendants += node->children[i]->num_of_descendants;
     }
-	counters[j % c][node->node] += descendants;
+    counter[node->ID] += descendants;
     node->num_of_descendants = descendants;
 }
 
 
-//funziona
 void Tree::removeChild(treeNode* child){
 
     if(child->father != NULL) {
         int size = child->father->children.size();
         for (int i = 0; i < size; i++) {
-            if (child->node == child->father->children[i]->node){
+            if (child->ID == child->father->children[i]->ID){
                 child->father->children.erase(child->father->children.begin()+i);
                 child->father = NULL;
                 break;
@@ -87,7 +68,6 @@ void Tree::removeChild(treeNode* child){
 }
 
 
-//funziona
 void Tree::updateFather(treeNode* father, treeNode* child){
 
 
@@ -97,14 +77,11 @@ void Tree::updateFather(treeNode* father, treeNode* child){
 }
 
 
-
-
-// funziona
 void Tree::printTree(treeNode* root){
 
-    std::cout << root->node << "-";
+    std::cout << root->ID << "-";
     for(int i=0; i<root->children.size(); i++){
-        std::cout<<root->children[i]->node;
+        std::cout<<root->children[i]->ID;
     }
 
     std::cout<<"\n";
@@ -112,13 +89,10 @@ void Tree::printTree(treeNode* root){
     for(int i=0;i< root->children.size();i++){
         printTree(root->children[i]);
     }
-
-
-
 }
 
 
-treeNode* Tree::DFS(int node){
+treeNode* Tree::BFS(int node){
 
 	bool trovato=false;
 	treeNode* selectedNode;
@@ -129,7 +103,7 @@ treeNode* Tree::DFS(int node){
 		selectedNode=queue.front();
 		queue.pop();
 
-		if(selectedNode->node == node){
+		if(selectedNode->ID == node){
 			trovato = true;;
 		}
 		else{
@@ -142,36 +116,32 @@ treeNode* Tree::DFS(int node){
 		}
 	
 	}
-
-	//out of cicle
 	return selectedNode;
 
 }
 
-// Questa funzione elimina tutto l'albero radicato nel nodo root compresa la radice
-void Tree::removeTree(treeNode* root, std::vector<std::vector<int>> &counters,int j,int c){
+
+void Tree::removeTree(treeNode* root, std::vector<int> &counter){
 
     if(!root->children.empty()){
         for(int i = 0; i<root->children.size(); i++){
-            removeTree(root->children[i], counters, j, c);
+            removeTree(root->children[i], counter);
         }
     }
-	//std::cout<<"discendnti di : "<<root->node<<"da rimuovere"<<root->num_of_descendants<<"\n";
-	counters[j % c][root->node] -= root->num_of_descendants;
+    counter[root->ID] -= root->num_of_descendants;
     root->num_of_descendants = 0;
     root = NULL;
 
 
 }
 
-// Questa funzione rimuove tutti i sottoalberi radicati in un nodo
-void Tree::deleteSubTree(treeNode* root, std::vector<std::vector<int>> &counters,int j,int c){
+
+void Tree::deleteSubTree(treeNode* root, std::vector<int> &counter){
     if(root != NULL) {
         for (int i = 0; i < root->children.size(); i++) {
-            removeTree(root->children[i], counters,j,c);
-
+            removeTree(root->children[i], counter);
         }
-        decreaseDescendants(root, root->num_of_descendants, counters,j,c);
+        decreaseDescendants(root, root->num_of_descendants, counter);
         root->children.resize(0);
     }
 }

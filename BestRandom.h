@@ -18,7 +18,18 @@ public:
 
     BestRandom();
 
+    /**
+     *
+     * @param min = lower bound of set
+     * @param max = upper bound of set
+     */
+
     BestRandom(int min, int max);
+
+    /**
+     *
+     * @return a integer value randomly extracted from the remaining instances of set.
+     */
 
     int random();
 

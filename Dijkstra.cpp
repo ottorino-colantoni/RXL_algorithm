@@ -1,6 +1,4 @@
-#include <boost/program_options.hpp>
 #include "boost/heap/fibonacci_heap.hpp"
-#include <omp.h>
 #include <vector>
 #include "Dijkstra.h"
 #define INF 0x3F3F3F
@@ -18,30 +16,21 @@ void Dijkstra::runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph, bool pru
     std::vector<int> distances;
     int size= graph->numberOfNodes();
     distances.resize(size,INF);
-    int source = treeDijkstra->getRoot()->node;
+    int source = treeDijkstra->getRoot()->ID;
     distances[source] = 0;
-    //creazione array
-    //inserimento radice nell'array
-    //inserimento radice nel vettore handles
     handles[source] = pq->push(heap_dijkstra(treeDijkstra->getRoot(),0));
-    // variabile per peso arco
     int wuv;
-    //inizio ciclo per dijkstra
     while(pq->empty() == false){
-        // estraggo il nodo  v con chiave minima
         treeNode* current = pq->top().node;
-        //estraggo la distanza dalla sorgente s al nodo u
         int distance = pq->top().prio;
-        //rimozione elemento dallo heap
         pq->pop();
-        graph->forNeighborsOf(current->node, [&](int v) {
-            wuv = graph -> weight(current->node,v);
+        graph->forNeighborsOf(current->ID, [&](int v) {
+            wuv = graph -> weight(current->ID,v);
             if(distances[v] == INF) {
-                // il nodo è stato trovato per la prima volta quindi faccio addNode poi lo aggiungo alla tabella hash
                 if(!pruned || (pruned && index->query(source,v)>(distance+wuv))) {
                     distances[v] = distance + wuv;
                     treeNode *new_child = new treeNode();
-                    new_child->node = v;
+                    new_child->ID = v;
                     handles[v] = pq->push(heap_dijkstra(new_child, distances[v]));
                     treeDijkstra->addNode(new_child, current);
                 }
@@ -50,7 +39,6 @@ void Dijkstra::runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph, bool pru
                 distances[v] = distance + wuv;
                 (*handles[v]).prio = distances[v];
                 pq->decrease(handles[v]);
-                //aggiorno il padre di v e rimuovo il figlio v dalla lista del padre precedemente salvato;
                 treeDijkstra->updateFather(current,(*handles[v]).node);
             }
         });
