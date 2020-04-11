@@ -86,7 +86,8 @@ int main(int argc, char** argv){
         throw std::runtime_error("Max number of trees must fall in [1, graph size]");
     }
 
-
+    mytimer tm;
+    tm.restart();
     NetworKit::Graph *graph;
     Auxiliary::read(graph_location, false, &graph);
     SamPG *spg = new SamPG(num_samples, num_counters, graph);
@@ -113,10 +114,11 @@ int main(int argc, char** argv){
         }
         ++builder_;
     }
+    std::cout<<"time elapsed: "<<tm.elapsed();
 
-
-    InputOutput* io = new InputOutput();
-    io->printLabelsOnFile(labeling, output_location);
-
+    //InputOutput* io = new InputOutput();
+    //io->printLabelsOnFile(labeling, output_location);
+    //Labeling* labels2 = new Labeling(graph->isDirected());
+    //io->readLabelsFromFile(labels2, output_location);
 }
 

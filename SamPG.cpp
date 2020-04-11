@@ -4,7 +4,7 @@
 
 #include "SamPG.h"
 #include "mytimer.h"
-
+#include <omp.h>
 
 SamPG::SamPG(){};
 
@@ -101,7 +101,7 @@ int SamPG::maxDescNode(){
 void SamPG::encreaseForest(int Samples, Labeling* index) {
 
       Dijkstra *dijkstra;
-      for (int i = 0; i < Samples; i++) {
+    for (int i = 0; i < Samples; i++) {
           Tree* new_tree = new Tree(this->random_roots->random());
           this->samplesForest.push_back(new_tree);
           dijkstra->runDijkstra(this->samplesForest.back(), this->graph, true, index);
