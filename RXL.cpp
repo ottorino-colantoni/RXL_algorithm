@@ -15,6 +15,7 @@
 #include <boost/program_options.hpp>
 #include <omp.h>
 #include "progressBar.h"
+#include "InputOutput.h"
 
 
 
@@ -112,5 +113,10 @@ int main(int argc, char** argv){
         }
         ++builder_;
     }
+
+
+    InputOutput* io = new InputOutput();
+    io->printLabelsOnFile(labeling, output_location);
+
 }
 
