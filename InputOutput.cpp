@@ -15,7 +15,7 @@ bool InputOutput::printLabelsOnFile(Labeling* labels, std::string file_location)
         for (int i = 0; i < labels->in_labels.size() ; i++) {
             for (int j = 0; j <labels->in_labels[i].size() ; j++) {
                 if(labels->in_labels[i][j].d != NULL_WEIGHT) {
-                    myfile << i << ' ' << labels->in_labels[i][j].v << ' ' << labels->in_labels[i][j].d <<'\n';
+                    myfile << i << ' ' << labels->index_to_node(labels->in_labels[i][j].v) << ' ' << labels->in_labels[i][j].d <<'\n';
                 }
             }
         }

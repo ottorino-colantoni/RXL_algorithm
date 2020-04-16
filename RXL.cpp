@@ -116,9 +116,7 @@ int main(int argc, char** argv){
     }
     std::cout<<"time elapsed: "<<tm.elapsed();
 
-    //InputOutput* io = new InputOutput();
-    //io->printLabelsOnFile(labeling, output_location);
-    //Labeling* labels2 = new Labeling(graph->isDirected());
-    //io->readLabelsFromFile(labels2, output_location);
+    InputOutput* io = new InputOutput();
+    io->printLabelsOnFile(labeling, output_location);
 }
 
