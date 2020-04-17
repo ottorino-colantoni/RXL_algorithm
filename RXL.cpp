@@ -16,6 +16,123 @@
 #include <omp.h>
 #include "progressBar.h"
 #include "InputOutput.h"
+#include <vector>
+#include "matplotlibcpp.h"
+
+
+
+
+void runRXL(std::string graph_location,int num_samples,int num_counters,int num_newsamples,int max_numtrees,std::string output_location){
+
+		NetworKit::Graph *graph;
+		Auxiliary::read(graph_location, false, &graph);
+		SamPG *spg = new SamPG(num_samples, num_counters, graph);
+		spg->createForest();
+		int max;
+
+		std::pair <std::vector<custom_node>, std::vector<custom_node>> keeper;
+		keeper.second.resize(graph->upperNodeIdBound());
+		Labeling *labeling = new Labeling(graph->isDirected());
+		Labeling_Tools *lt = new Labeling_Tools(graph, labeling, keeper);
+
+		ProgressStream builder_(graph->numberOfNodes());
+		builder_.label() << "Building WEIGHTED UNDIRECTED labeling for " <<graph->numberOfNodes()<< " vertices";
+
+		for (int i = 0; i < graph->numberOfNodes(); i++) {
+		    max = spg->maxDescNode();
+		    lt->add_node_to_keeper(max, i);
+		    lt->weighted_build_RXL();
+		    if(!spg->isEnded()) {
+		        spg->updateForest(max);
+		        if (spg->getNumSamples()< max_numtrees) {
+		            spg->encreaseForest(num_newsamples, labeling);
+		        }
+		    }
+		    ++builder_;
+		}
+
+		InputOutput* io = new InputOutput();
+		io->printLabelsOnFile(labeling, output_location);
+	
+	
+}
+
+
+void testRXL(std::string graph_location,std::vector<int> num_samples,std::vector<int> num_counters,std::vector<int> num_newsamples,std::vector<int> max_numtrees,std::string output_location){
+
+
+
+		NetworKit::Graph *graph;
+		Auxiliary::read(graph_location, false, &graph);
+		
+		std::vector<std::vector<float>> data;
+		data.resize(num_samples.size()*num_counters.size()*num_newsamples.size()*max_numtrees.size());
+		int round=0;
+
+
+		for(int i=0;i<num_samples.size();i++){
+			
+			for(int j=0;j<=num_counters.size();j++){
+			
+				for(int z=0;z<=num_newsamples.size();z++){
+				
+					for(int k=0; k<=max_numtrees.size();k++){
+					
+						data[round].push_back(num_samples[i]);
+						data[round].push_back(num_counters[j]);
+						data[round].push_back(num_newsamples[z]);
+						data[round].push_back(max_numtrees[k]);
+						
+						int max;
+						int avgup=0;
+						int avgen=0;
+						mytimer timer;
+						mytimer timerup;
+						float avgupdate=0;
+						float avgencrease=0;
+						std::pair <std::vector<custom_node>, std::vector<custom_node>> keeper;
+						keeper.second.resize(graph->upperNodeIdBound());
+						Labeling *labeling = new Labeling(graph->isDirected());
+						Labeling_Tools *lt = new Labeling_Tools(graph, labeling, keeper);
+						SamPG *spg = new SamPG(num_samples[i], num_counters[j], graph);
+						timer.restart();
+						spg->createForest();
+						data[round].push_back(timer.elapsed());
+						for (int i = 0; i < graph->numberOfNodes(); i++) {
+							max = spg->maxDescNode();
+							lt->add_node_to_keeper(max, i);
+							lt->weighted_build_RXL();
+							if(!spg->isEnded()) {
+								timerup.restart();
+								spg->updateForest(max);
+								avgup++;
+								avgupdate+=timerup.elapsed();
+								if (spg->getNumSamples()< max_numtrees[k]) {
+									timerup.restart();
+									spg->encreaseForest(num_newsamples[z], labeling);
+									avgencrease+= timerup.elapsed();
+									avgen++;
+								}
+								
+							}
+						}
+						data[round].push_back(timer.elapsed());
+						data[round].push_back(avgupdate/avgup);
+						data[round].push_back(avgencrease/avgen);
+						data[round].push_back(labeling->getNumberOfLabelEntries());
+						round++;
+										
+					}
+				
+				}
+			
+			}
+		
+		}
+
+
+}
+
 
 
 
@@ -27,11 +144,12 @@ int main(int argc, char** argv){
 
     desc.add_options()
             ("graph_location,g", po::value<std::string>(), "Input Graph File Location")
-            ("num_samples,k", po::value<int>(), "Number of samples to use at the beginning")
-            ("num_counters,c", po::value<int>(), "Number of counters to use")
-            ("num_newsamples,n", po::value<int>(), "Number of new samples introduced at each iteration")
-            ("max_numtrees,m",po::value<int>(), "Max number of trees used as samples")
+            ("num_samples,k", po::value<std::vector<int>>()->multitoken(), "Number of samples to use at the beginning")
+            ("num_counters,c", po::value<std::vector<int>>()->multitoken(), "Number of counters to use")
+            ("num_newsamples,n", po::value<std::vector<int>>()->multitoken(), "Number of new samples introduced at each iteration")
+            ("max_numtrees,m",po::value<std::vector<int>>()->multitoken(), "Max number of trees used as samples")
             ("output_location,o", po::value<std::string>(), "Location where to save the output")
+            ("test,t", po::value<int>(),"execution mode : {test:1 or run:0}")
             ;
 
 
@@ -39,36 +157,40 @@ int main(int argc, char** argv){
     po::store(po::parse_command_line(argc, argv, desc), vm);
     po::notify(vm);
 
-    int num_samples = -1, num_counters = -1, num_newsamples = -1, max_numtrees = -1;
+    std::vector<int> num_samples, num_counters , num_newsamples , max_numtrees;
     std::string graph_location = "", output_location = "";
-
+	int test= -1;
     if (vm.empty()){
         std::cout << desc << "\n";
         throw std::runtime_error("Empty options");
     }
     if (vm.count("num_samples"))
-        num_samples = vm["num_samples"].as<int>();
+        num_samples = vm["num_samples"].as<std::vector<int>>();
 
     if (vm.count("num_counters"))
-        num_counters = vm["num_counters"].as<int>();
+        num_counters = vm["num_counters"].as<std::vector<int>>();
 
     if (vm.count("num_newsamples"))
-        num_newsamples = vm["num_newsamples"].as<int>();
+        num_newsamples = vm["num_newsamples"].as<std::vector<int>>();
 
     if (vm.count("max_numtrees"))
-        max_numtrees = vm["max_numtrees"].as<int>();
+        max_numtrees = vm["max_numtrees"].as<std::vector<int>>();
 
     if (vm.count("graph_location"))
         graph_location = vm["graph_location"].as<std::string>();
 
     if (vm.count("output_location"))
         output_location = vm["output_location"].as<std::string>();
+        
+    if (vm.count("test"))
+    test = vm["test"].as<int>();
 
 
-
-    if(num_samples<=0){
-        std::cout << desc << "\n";
-        throw std::runtime_error("Number of samples must be greater than 0");
+	for(int i=0; i<num_samples.size();i++){
+		if(num_samples[i]<=0){
+		    std::cout << desc << "\n";
+		    throw std::runtime_error("Number of samples must be greater than 0");
+		}
     }
 
     if(graph_location == ""){
@@ -76,47 +198,37 @@ int main(int argc, char** argv){
         throw std::runtime_error("Wrong graph_location");
     }
 
-    if(num_counters <= 0 || num_counters > num_samples){
-        std::cout << desc << "\n";
-        throw std::runtime_error("Number of counters must fall in [1, num_samples-1]");
+	for(int i=0; i<num_counters.size();i++){
+		if(num_counters[i] <= 0 || num_counters > num_samples){
+		    std::cout << desc << "\n";
+		    throw std::runtime_error("Number of counters must fall in [1, num_samples-1]");
+		}
     }
 
-    if(max_numtrees < num_samples || max_numtrees < 0){
-        std::cout << desc << "\n";
-        throw std::runtime_error("Max number of trees must fall in [1, graph size]");
+	for(int i=0; i<max_numtrees.size();i++){
+		if(max_numtrees[i] < 0){
+		    std::cout << desc << "\n";
+		    throw std::runtime_error("Max number of trees must fall in [1, graph size]");
+		}
     }
+    
 
-    mytimer tm;
-    tm.restart();
-    NetworKit::Graph *graph;
-    Auxiliary::read(graph_location, false, &graph);
-    SamPG *spg = new SamPG(num_samples, num_counters, graph);
-    spg->createForest();
-	int max;
-
-    std::pair <std::vector<custom_node>, std::vector<custom_node>> keeper;
-    keeper.second.resize(graph->upperNodeIdBound());
-    Labeling *labeling = new Labeling(graph->isDirected());
-    Labeling_Tools *lt = new Labeling_Tools(graph, labeling, keeper);
-
-    ProgressStream builder_(graph->numberOfNodes());
-    builder_.label() << "Building WEIGHTED UNDIRECTED labeling for " <<graph->numberOfNodes()<< " vertices";
-
-    for (int i = 0; i < graph->numberOfNodes(); i++) {
-        max = spg->maxDescNode();
-        lt->add_node_to_keeper(max, i);
-        lt->weighted_build_RXL();
-        if(!spg->isEnded()) {
-            spg->updateForest(max);
-            if (spg->getNumSamples()< max_numtrees) {
-                spg->encreaseForest(num_newsamples, labeling);
-            }
-        }
-        ++builder_;
+	if(test == 0){
+		runRXL(graph_location,num_samples[0],num_counters[0],num_newsamples[0],max_numtrees[0],output_location);
     }
-    std::cout<<"time elapsed: "<<tm.elapsed();
-
-    InputOutput* io = new InputOutput();
-    io->printLabelsOnFile(labeling, output_location);
+    
+    else if(test == 1){
+    
+    
+    
+    }
+    
+    else{throw std::runtime_error("Bad value (test) : choose 1 for RXL benchmark or 0 to print labels on file");}
 }
+
+
+
+
+
+
 
