@@ -22,6 +22,36 @@
 
 
 
+void plotResult(std::vector<std::vector<float>> data, std::vector<int> rounds){
+
+    matplotlibcpp::plot(rounds, data[4]);
+    matplotlibcpp::title("Create forest time trend");
+    matplotlibcpp::save("./createForestTime.png");
+    matplotlibcpp::show();
+
+    matplotlibcpp::plot(rounds, data[5]);
+    matplotlibcpp::title("Total time trend");
+    matplotlibcpp::save("./totalTime.png");
+    matplotlibcpp::show();
+
+    matplotlibcpp::plot(rounds, data[6]);
+    matplotlibcpp::title("Update time trend");
+    matplotlibcpp::save("./updateTime.png");
+    matplotlibcpp::show();
+
+    matplotlibcpp::plot(rounds, data[7]);
+    matplotlibcpp::title("Encrease forest average time trend");
+    matplotlibcpp::save("./encreaseForestAVGtime.png");
+    matplotlibcpp::show();
+
+    matplotlibcpp::plot(rounds, data[8]);
+    matplotlibcpp::title("Number of labels trend");
+    matplotlibcpp::save("./numberOfLabels.png");
+    matplotlibcpp::show();
+
+}
+
+
 void runRXL(std::string graph_location,int num_samples,int num_counters,int num_newsamples,int max_numtrees,std::string output_location){
 
 		NetworKit::Graph *graph;
@@ -61,27 +91,38 @@ void runRXL(std::string graph_location,int num_samples,int num_counters,int num_
 void testRXL(std::string graph_location,std::vector<int> num_samples,std::vector<int> num_counters,std::vector<int> num_newsamples,std::vector<int> max_numtrees,std::string output_location){
 
 
+        /*
+         * data:
+         * - 0 num_samples;
+         * - 1 num_counters;
+         * - 2 num_newsamples;
+         * - 3 max_numtrees;
+         * - 4 create forest time;
+         * - 5 total time;
+         * - 6 update avg time;
+         * - 7 encrease avg time;
+         * - 8 number of labels
+         */
 
 		NetworKit::Graph *graph;
 		Auxiliary::read(graph_location, false, &graph);
-		
+		int round = 0;
 		std::vector<std::vector<float>> data;
-		data.resize(num_samples.size()*num_counters.size()*num_newsamples.size()*max_numtrees.size());
-		int round=0;
-
+		data.resize(9);
+		std::vector<int> rounds;
 
 		for(int i=0;i<num_samples.size();i++){
 			
-			for(int j=0;j<=num_counters.size();j++){
+			for(int j=0;j<num_counters.size();j++){
 			
-				for(int z=0;z<=num_newsamples.size();z++){
+				for(int z=0;z<num_newsamples.size();z++){
 				
-					for(int k=0; k<=max_numtrees.size();k++){
+					for(int k=0; k<max_numtrees.size();k++){
 					
-						data[round].push_back(num_samples[i]);
-						data[round].push_back(num_counters[j]);
-						data[round].push_back(num_newsamples[z]);
-						data[round].push_back(max_numtrees[k]);
+						data[0].push_back(num_samples[i]);
+						data[1].push_back(num_counters[j]);
+						data[2].push_back(num_newsamples[z]);
+						data[3].push_back(max_numtrees[k]);
 						
 						int max;
 						int avgup=0;
@@ -97,7 +138,7 @@ void testRXL(std::string graph_location,std::vector<int> num_samples,std::vector
 						SamPG *spg = new SamPG(num_samples[i], num_counters[j], graph);
 						timer.restart();
 						spg->createForest();
-						data[round].push_back(timer.elapsed());
+						data[4].push_back(timer.elapsed());
 						for (int i = 0; i < graph->numberOfNodes(); i++) {
 							max = spg->maxDescNode();
 							lt->add_node_to_keeper(max, i);
@@ -116,12 +157,13 @@ void testRXL(std::string graph_location,std::vector<int> num_samples,std::vector
 								
 							}
 						}
-						data[round].push_back(timer.elapsed());
-						data[round].push_back(avgupdate/avgup);
-						data[round].push_back(avgencrease/avgen);
-						data[round].push_back(labeling->getNumberOfLabelEntries());
+						data[5].push_back(timer.elapsed());
+						data[6].push_back(avgupdate/avgup);
+						data[7].push_back(avgencrease/avgen);
+						data[8].push_back(labeling->getNumberOfLabelEntries());
+						rounds.push_back(round);
 						round++;
-										
+						delete spg, labeling;
 					}
 				
 				}
@@ -130,9 +172,9 @@ void testRXL(std::string graph_location,std::vector<int> num_samples,std::vector
 		
 		}
 
+		plotResult(data, rounds);
 
 }
-
 
 
 
@@ -218,9 +260,7 @@ int main(int argc, char** argv){
     }
     
     else if(test == 1){
-    
-    
-    
+        testRXL(graph_location, num_samples, num_counters, num_newsamples, max_numtrees, output_location);
     }
     
     else{throw std::runtime_error("Bad value (test) : choose 1 for RXL benchmark or 0 to print labels on file");}
