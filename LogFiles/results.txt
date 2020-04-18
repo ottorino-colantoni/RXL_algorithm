@@ -1,0 +1,5 @@
+graph.hist
+PLL data
+Preprocessing time: 12.5304  Number of Labels: 1.42927e+06  Query average time (sec): 2.75227e-06  Correctness percentage: 100
+RXL data
+Preprocessing time: 50.3106  Number of Labels: 543654  Query average time (sec): 1.79415e-06  Correctness percentage: 100

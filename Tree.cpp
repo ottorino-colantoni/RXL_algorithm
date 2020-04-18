@@ -15,7 +15,6 @@ Tree::Tree(int source){
     this->treeRoot = r;
 }
 
-
 treeNode* Tree::getRoot(){
     return &treeRoot;
 }
@@ -131,8 +130,6 @@ void Tree::removeTree(treeNode* root, std::vector<int> &counter){
     counter[root->ID] -= root->num_of_descendants;
     root->num_of_descendants = 0;
     root = NULL;
-
-
 }
 
 

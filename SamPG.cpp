@@ -59,9 +59,10 @@ int SamPG::maxDescNode(){
                max_for_zero = temporarymax;
                roundNode_for_zero = i;
            }
-
-           temporarymax -= useless_value1;
-           temporarymax = (temporarymax / (this->num_counters - 1));
+           if(num_counters>1) {
+               temporarymax -= useless_value1;
+               temporarymax = (temporarymax / (this->num_counters - 1));
+           }
            if (temporarymax > max) {
                max = temporarymax;
                roundNode = i;

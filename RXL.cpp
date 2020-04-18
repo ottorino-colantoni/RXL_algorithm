@@ -25,30 +25,95 @@
 void plotResult(std::vector<std::vector<float>> data, std::vector<int> rounds){
 
     matplotlibcpp::plot(rounds, data[4]);
+    matplotlibcpp::xlabel("iteration");
+    matplotlibcpp::ylabel("time (s)");
     matplotlibcpp::title("Create forest time trend");
-    matplotlibcpp::save("./createForestTime.png");
+    matplotlibcpp::save("./LogFiles/createForestTime.png");
     matplotlibcpp::show();
 
     matplotlibcpp::plot(rounds, data[5]);
+    matplotlibcpp::xlabel("iteration");
+    matplotlibcpp::ylabel("time (s)");
     matplotlibcpp::title("Total time trend");
-    matplotlibcpp::save("./totalTime.png");
+    matplotlibcpp::save("./LogFiles/totalTime.png");
     matplotlibcpp::show();
 
     matplotlibcpp::plot(rounds, data[6]);
+    matplotlibcpp::xlabel("iteration");
+    matplotlibcpp::ylabel("time (s)");
     matplotlibcpp::title("Update time trend");
-    matplotlibcpp::save("./updateTime.png");
+    matplotlibcpp::save("./LogFiles/updateTime.png");
     matplotlibcpp::show();
 
     matplotlibcpp::plot(rounds, data[7]);
+    matplotlibcpp::xlabel("iteration");
+    matplotlibcpp::ylabel("time (s)");
     matplotlibcpp::title("Encrease forest average time trend");
-    matplotlibcpp::save("./encreaseForestAVGtime.png");
+    matplotlibcpp::save("./LogFiles/encreaseForestAVGtime.png");
     matplotlibcpp::show();
 
     matplotlibcpp::plot(rounds, data[8]);
+    matplotlibcpp::xlabel("iteration");
+    matplotlibcpp::ylabel("num. labels");
     matplotlibcpp::title("Number of labels trend");
-    matplotlibcpp::save("./numberOfLabels.png");
+    matplotlibcpp::save("./LogFiles/numberOfLabels.png");
     matplotlibcpp::show();
 
+}
+
+
+void randomQueryTest(Labeling *labels1, Labeling *labels2, int graph_size, std::vector<std::vector<float>> &data){
+
+    mytimer timer;
+    float avg1=0;
+    float avg2=0;
+    BestRandom *random = new BestRandom(0, graph_size);
+    std::vector<int> attempts;
+    std::vector<float> time1;
+    std::vector<float> time2;
+    int num_attempts = graph_size/10;
+    attempts.resize(num_attempts);
+    time1.resize(num_attempts);
+    time2.resize(num_attempts);
+    int value1;
+    int value2;
+    int dist1;
+    int dist2;
+    int corrects = 0;
+
+    for (int i = 0; i < num_attempts; i++) {
+        value1 = random->random();
+        value2 = random->random();
+        timer.restart();
+        dist1 = labels1->query(value1,value2);
+        time1[i] = timer.elapsed();
+        avg1 += time1[i];
+        timer.restart();
+        dist2 = labels2->query(value1,value2);
+        time2[i] = timer.elapsed();
+        avg2 += time2[i];
+        if(dist1 == dist2){
+            corrects += 1;
+        }
+        attempts[i] = i;
+    }
+
+    avg1 /= num_attempts;
+    avg2 /= num_attempts;
+
+    matplotlibcpp::plot(attempts, time1);
+    matplotlibcpp::plot(attempts, time2, "r-");
+    matplotlibcpp::xlabel("iteration");
+    matplotlibcpp::ylabel("time (s)");
+    matplotlibcpp::title("Query time trend");
+    matplotlibcpp::save("./LogFiles/queryTimeTrend.png");
+    matplotlibcpp::show();
+
+
+    data[0].push_back(avg1);
+    data[1].push_back(avg2);
+    data[0].push_back(corrects*100/num_attempts);
+    data[1].push_back(corrects*100/num_attempts);
 }
 
 
@@ -163,8 +228,7 @@ void testRXL(std::string graph_location,std::vector<int> num_samples,std::vector
 						data[8].push_back(labeling->getNumberOfLabelEntries());
 						rounds.push_back(round);
 						round++;
-						delete spg, labeling;
-					}
+                    }
 				
 				}
 			
@@ -175,6 +239,69 @@ void testRXL(std::string graph_location,std::vector<int> num_samples,std::vector
 		plotResult(data, rounds);
 
 }
+
+void compare(std::string graph_location,int num_samples,int num_counters,int num_newsamples,int max_numtrees,std::string output_location){
+
+    NetworKit::Graph *graph;
+    Auxiliary::read(graph_location, false, &graph);
+    mytimer timer;
+    std::vector<std::vector<float>> data;
+    data.resize(2);
+
+    /* data structure
+     *
+     * - 0 PLL
+     * - 1 RXL
+     *
+     * - 0 preprocessing time;
+     * - 1 labels' number;
+     * - 2 avg time;
+     * - 3 correct queries percentage.
+     */
+
+    //Creating Labels with PLL
+    timer.restart();
+    Labeling *PLLlabels = new Labeling(graph->isDirected());
+    std::pair <std::vector<custom_node>, std::vector<custom_node>> keeperPLL;
+    keeperPLL = Auxiliary::compute_ordering(graph, 0);
+    Labeling_Tools *ltPLL = new Labeling_Tools(graph, PLLlabels, keeperPLL, false);
+    data[0].push_back(timer.elapsed());
+
+
+
+    //Creating Labels with RXL
+    timer.restart();
+    SamPG *spg = new SamPG(num_samples, num_counters, graph);
+    spg->createForest();
+    int max;
+    std::pair <std::vector<custom_node>, std::vector<custom_node>> keeperRXL;
+    keeperRXL.second.resize(graph->upperNodeIdBound());
+    Labeling *RXLlabels = new Labeling(graph->isDirected());
+    Labeling_Tools *lt = new Labeling_Tools(graph, RXLlabels, keeperRXL);
+
+    for (int i = 0; i < graph->numberOfNodes(); i++) {
+        max = spg->maxDescNode();
+        lt->add_node_to_keeper(max, i);
+        lt->weighted_build_RXL();
+        if(!spg->isEnded()) {
+            spg->updateForest(max);
+            if (spg->getNumSamples()< max_numtrees) {
+                spg->encreaseForest(num_newsamples, RXLlabels);
+            }
+        }
+    }
+    data[1].push_back(timer.elapsed());
+    data[0].push_back(PLLlabels->getNumberOfLabelEntries());
+    data[1].push_back(RXLlabels->getNumberOfLabelEntries());
+    randomQueryTest(PLLlabels, RXLlabels, graph->numberOfNodes(), data);
+
+    InputOutput* io = new InputOutput();
+    io->printLogCompare(data, graph_location, output_location);
+
+
+}
+
+
 
 
 
@@ -191,7 +318,7 @@ int main(int argc, char** argv){
             ("num_newsamples,n", po::value<std::vector<int>>()->multitoken(), "Number of new samples introduced at each iteration")
             ("max_numtrees,m",po::value<std::vector<int>>()->multitoken(), "Max number of trees used as samples")
             ("output_location,o", po::value<std::string>(), "Location where to save the output")
-            ("test,t", po::value<int>(),"execution mode : {test:1 or run:0}")
+            ("exe,e", po::value<int>(),"execution mode : {run:0, test:1, compare:2}")
             ;
 
 
@@ -201,7 +328,7 @@ int main(int argc, char** argv){
 
     std::vector<int> num_samples, num_counters , num_newsamples , max_numtrees;
     std::string graph_location = "", output_location = "";
-	int test= -1;
+	int exe= -1;
     if (vm.empty()){
         std::cout << desc << "\n";
         throw std::runtime_error("Empty options");
@@ -224,8 +351,8 @@ int main(int argc, char** argv){
     if (vm.count("output_location"))
         output_location = vm["output_location"].as<std::string>();
         
-    if (vm.count("test"))
-    test = vm["test"].as<int>();
+    if (vm.count("exe"))
+    exe = vm["exe"].as<int>();
 
 
 	for(int i=0; i<num_samples.size();i++){
@@ -255,12 +382,16 @@ int main(int argc, char** argv){
     }
     
 
-	if(test == 0){
+	if(exe == 0){
 		runRXL(graph_location,num_samples[0],num_counters[0],num_newsamples[0],max_numtrees[0],output_location);
     }
     
-    else if(test == 1){
+    else if(exe == 1){
         testRXL(graph_location, num_samples, num_counters, num_newsamples, max_numtrees, output_location);
+    }
+
+    else if(exe == 2){
+        compare(graph_location, num_samples[0], num_counters[0], num_newsamples[0], max_numtrees[0], output_location);
     }
     
     else{throw std::runtime_error("Bad value (test) : choose 1 for RXL benchmark or 0 to print labels on file");}

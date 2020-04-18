@@ -2,15 +2,16 @@
 #include "InputOutput.h"
 #include <string>
 
+
 InputOutput::InputOutput() {}
 
 
-bool InputOutput::printLabelsOnFile(Labeling* labels, std::string file_location) {
+bool InputOutput::printLabelsOnFile(Labeling* labels, std::string file_name) {
 
     std::ofstream myfile;
     try{
-        myfile.open(file_location, std::ios::trunc);
-        int size = 32000;
+        myfile.open(LOGS_LOCATION + file_name, std::ios::trunc);
+        int size = labels->in_labels.size();
         myfile<<size<<'\n';
         for (int i = 0; i < labels->in_labels.size() ; i++) {
             for (int j = 0; j <labels->in_labels[i].size() ; j++) {
@@ -31,9 +32,9 @@ bool InputOutput::printLabelsOnFile(Labeling* labels, std::string file_location)
 
 }
 
-bool InputOutput::readLabelsFromFile(Labeling *labels, std::string file_location) {
+bool InputOutput::readLabelsFromFile(Labeling *labels, std::string file_name) {
 
-    std::ifstream ifs(file_location);
+    std::ifstream ifs(LOGS_LOCATION + file_name);
 
     if (!ifs)
         throw std::runtime_error("Error opening File ");
@@ -58,5 +59,34 @@ bool InputOutput::readLabelsFromFile(Labeling *labels, std::string file_location
     }
 
     ifs.close();
+
+}
+
+bool InputOutput::printLogCompare(std::vector<std::vector<float>> data, std::string graph_name,std::string file_name){
+
+    std::ofstream myfile;
+    try {
+        myfile.open(LOGS_LOCATION + file_name, std::ios::trunc);
+        myfile << graph_name << "\n";
+        for (int i = 0; i < data.size(); i++) {
+            if (i == 0) {
+                myfile << "PLL data" << "\n";
+
+            } else if (i == 1) {
+                myfile << "RXL data" << "\n";
+            }
+            myfile << "Preprocessing time: " << data[i][0] << "  Number of Labels: " << data[i][1]
+                   << "  Query average time (sec): " << data[i][2] << "  Correctness percentage: " << data[i][3]
+                   << "\n";
+        }
+    }
+    catch (const std::ofstream::failure& e){
+        std::cout<< "Exception opening file";
+        return false;
+    }
+
+    myfile.close();
+
+    return true;
 
 }

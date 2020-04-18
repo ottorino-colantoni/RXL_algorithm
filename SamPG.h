@@ -29,6 +29,7 @@ private:
                           // (it's used to boost the maxDescNode function)
     NetworKit::Graph* graph; // Graph
 
+
 public:
 
 
@@ -95,6 +96,7 @@ public:
      * @return number of samples in the forest.
      */
     int getNumSamples();
+
 };
 
 
