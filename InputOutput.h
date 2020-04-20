@@ -8,6 +8,7 @@
 
 #ifndef INPUTOUTPUT_H
 #define INPUTOUTPUT_H
+#define  LOGS_LOCATION "./LogFiles/"
 
 class InputOutput {
 
@@ -15,9 +16,11 @@ public:
 
     InputOutput();
 
-    bool readLabelsFromFile(Labeling* labels, std::string file_location);
+    bool readLabelsFromFile(Labeling* labels, std::string file_name);
 
-    bool printLabelsOnFile(Labeling* labels, std::string file_location);
+    bool printLabelsOnFile(Labeling* labels, std::string file_name);
+
+    bool printLogCompare(std::vector<std::vector<float>> data, std::string graph_name, std::string file_name);
 
 
 };
