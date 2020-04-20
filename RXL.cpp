@@ -202,8 +202,8 @@ void testRXL(std::string graph_location,std::vector<int> num_samples,std::vector
 		
 		}
 
-		plotResult(data, rounds);
-
+        InputOutput* io = new InputOutput();
+		io->printTestResult(data, output_location);
 }
 
 void compare(std::string graph_location,int num_samples,int num_counters,int num_newsamples,int max_numtrees,std::string output_location){
@@ -268,6 +268,13 @@ void compare(std::string graph_location,int num_samples,int num_counters,int num
 }
 
 
+void generateTestsPlots(std::string output_location){
+    InputOutput *io = new InputOutput();
+    std::vector<std::vector<float>> data;
+    std::vector<int> rounds;
+    io->readTestResult(data, rounds, output_location);
+    plotResult(data, rounds);
+}
 
 
 
@@ -284,7 +291,7 @@ int main(int argc, char** argv){
             ("num_newsamples,n", po::value<std::vector<int>>()->multitoken(), "Number of new samples introduced at each iteration")
             ("max_numtrees,m",po::value<std::vector<int>>()->multitoken(), "Max number of trees used as samples")
             ("output_location,o", po::value<std::string>(), "Location where to save the output")
-            ("exe,e", po::value<int>(),"execution mode : {run:0, test:1, compare:2}")
+            ("exe,e", po::value<int>(),"execution mode : {run:0, test:1, compare:2, plot:3}")
             ;
 
 
@@ -320,33 +327,33 @@ int main(int argc, char** argv){
     if (vm.count("exe"))
     exe = vm["exe"].as<int>();
 
+    if(exe != 3) {
+        for (int i = 0; i < num_samples.size(); i++) {
+            if (num_samples[i] <= 0) {
+                std::cout << desc << "\n";
+                throw std::runtime_error("Number of samples must be greater than 0");
+            }
+        }
 
-	for(int i=0; i<num_samples.size();i++){
-		if(num_samples[i]<=0){
-		    std::cout << desc << "\n";
-		    throw std::runtime_error("Number of samples must be greater than 0");
-		}
-    }
+        if (graph_location == "") {
+            std::cout << desc << "\n";
+            throw std::runtime_error("Wrong graph_location");
+        }
 
-    if(graph_location == ""){
-        std::cout << desc << "\n";
-        throw std::runtime_error("Wrong graph_location");
-    }
+        for (int i = 0; i < num_counters.size(); i++) {
+            if (num_counters[i] <= 0 || num_counters > num_samples) {
+                std::cout << desc << "\n";
+                throw std::runtime_error("Number of counters must fall in [1, num_samples-1]");
+            }
+        }
 
-	for(int i=0; i<num_counters.size();i++){
-		if(num_counters[i] <= 0 || num_counters > num_samples){
-		    std::cout << desc << "\n";
-		    throw std::runtime_error("Number of counters must fall in [1, num_samples-1]");
-		}
+        for (int i = 0; i < max_numtrees.size(); i++) {
+            if (max_numtrees[i] < 0) {
+                std::cout << desc << "\n";
+                throw std::runtime_error("Max number of trees must fall in [1, graph size]");
+            }
+        }
     }
-
-	for(int i=0; i<max_numtrees.size();i++){
-		if(max_numtrees[i] < 0){
-		    std::cout << desc << "\n";
-		    throw std::runtime_error("Max number of trees must fall in [1, graph size]");
-		}
-    }
-    
 
 	if(exe == 0){
 		runRXL(graph_location,num_samples[0],num_counters[0],num_newsamples[0],max_numtrees[0],output_location);
@@ -358,6 +365,10 @@ int main(int argc, char** argv){
 
     else if(exe == 2){
         compare(graph_location, num_samples[0], num_counters[0], num_newsamples[0], max_numtrees[0], output_location);
+    }
+
+    else if(exe == 3){
+        generateTestsPlots(output_location);
     }
     
     else{throw std::runtime_error("Bad value (test) : choose 1 for RXL benchmark or 0 to print labels on file");}

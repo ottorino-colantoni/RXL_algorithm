@@ -27,8 +27,12 @@ public:
 
     bool printPlot(std::vector<int> xs, std::vector<std::vector<float>> ys, std::string title, std::string xlabel, std::string ylabel, std::string filename);
 
+    bool printTestResult(std::vector<std::vector<float>> &data, std::string file_name);
 
-};
+    bool readTestResult(std::vector<std::vector<float>> &data, std::vector<int> &rounds, std::string file_location);
+
+
+    };
 
 
 #endif //RXL_ALGORITHM_INPUTOUTPUT_H

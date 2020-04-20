@@ -102,3 +102,60 @@ bool InputOutput::printLogCompare(std::vector<std::vector<float>> data, std::str
     return true;
 
 }
+
+bool InputOutput::printTestResult(std::vector<std::vector<float>> &data, std::string file_name){
+
+    std::ofstream myfile;
+    try {
+        myfile.open(LOGS_LOCATION + file_name, std::ios::app);
+        for (int i = 0; i < data[0].size(); i++) {
+            for (int j = 0; j < data.size(); j++) {
+                myfile<<data[i][j]<<" ";
+            }
+            myfile<<"\n";
+        }
+    }
+    catch (const std::ofstream::failure& e){
+        std::cout<< "Exception opening file";
+        return false;
+    }
+
+    myfile.close();
+
+    return true;
+}
+
+bool InputOutput::readTestResult(std::vector<std::vector<float>> &data, std::vector<int> &rounds, std::string file_name){
+
+    data.resize(9);
+    std::ifstream ifs(LOGS_LOCATION + file_name);
+    int i = 0;
+
+    if (!ifs)
+        throw std::runtime_error("Error opening File ");
+
+    float num_samples, num_counters, num_newsamples, max_numtrees, create_forest_time, tot_time, up_avg_time, encr_avg_time, num_of_labels;
+    ifs.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    while(true){
+
+        ifs >> num_samples >> num_counters >> num_newsamples, max_numtrees, create_forest_time, tot_time, up_avg_time, encr_avg_time, num_of_labels;
+        ifs.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+        if(ifs.eof())
+            break;
+
+        data[0].push_back(num_samples);
+        data[1].push_back(num_counters);
+        data[2].push_back(num_newsamples);
+        data[3].push_back(max_numtrees);
+        data[4].push_back(create_forest_time);
+        data[5].push_back(tot_time);
+        data[6].push_back(up_avg_time);
+        data[7].push_back(encr_avg_time);
+        data[8].push_back(num_of_labels);
+        rounds.push_back(i);
+        i++;
+    }
+
+    ifs.close();
+}
