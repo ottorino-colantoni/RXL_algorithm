@@ -36,6 +36,8 @@ public:
 
     SamPG();
 
+
+
     /**
      *
      * @param k = number of samples to create at the beginning

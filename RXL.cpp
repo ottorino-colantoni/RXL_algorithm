@@ -24,40 +24,12 @@
 
 void plotResult(std::vector<std::vector<float>> data, std::vector<int> rounds){
 
-    matplotlibcpp::plot(rounds, data[4]);
-    matplotlibcpp::xlabel("iteration");
-    matplotlibcpp::ylabel("time (s)");
-    matplotlibcpp::title("Create forest time trend");
-    matplotlibcpp::save("./LogFiles/createForestTime.png");
-    matplotlibcpp::show();
-
-    matplotlibcpp::plot(rounds, data[5]);
-    matplotlibcpp::xlabel("iteration");
-    matplotlibcpp::ylabel("time (s)");
-    matplotlibcpp::title("Total time trend");
-    matplotlibcpp::save("./LogFiles/totalTime.png");
-    matplotlibcpp::show();
-
-    matplotlibcpp::plot(rounds, data[6]);
-    matplotlibcpp::xlabel("iteration");
-    matplotlibcpp::ylabel("time (s)");
-    matplotlibcpp::title("Update time trend");
-    matplotlibcpp::save("./LogFiles/updateTime.png");
-    matplotlibcpp::show();
-
-    matplotlibcpp::plot(rounds, data[7]);
-    matplotlibcpp::xlabel("iteration");
-    matplotlibcpp::ylabel("time (s)");
-    matplotlibcpp::title("Encrease forest average time trend");
-    matplotlibcpp::save("./LogFiles/encreaseForestAVGtime.png");
-    matplotlibcpp::show();
-
-    matplotlibcpp::plot(rounds, data[8]);
-    matplotlibcpp::xlabel("iteration");
-    matplotlibcpp::ylabel("num. labels");
-    matplotlibcpp::title("Number of labels trend");
-    matplotlibcpp::save("./LogFiles/numberOfLabels.png");
-    matplotlibcpp::show();
+    InputOutput* io = new InputOutput();
+    io->printPlot(rounds, {data[4]}, "Create Forest time trend", "iteration", "time (s)", "createForestTime.png");
+    io->printPlot(rounds, {data[5]}, "Total time trend", "iteration", "time (s)", "totalTime.png");
+    io->printPlot(rounds, {data[6]}, "Update time trend", "iteration", "time (s)", "updateTime.png");
+    io->printPlot(rounds, {data[7]}, "Encrease forest time trend", "iteration", "time (s)", "encreaseForestTime.png");
+    io->printPlot(rounds, {data[8]}, "Number Of Labels trend", "iteration", "num. labels", "numOfLabels.png");
 
 }
 
@@ -101,14 +73,10 @@ void randomQueryTest(Labeling *labels1, Labeling *labels2, int graph_size, std::
     avg1 /= num_attempts;
     avg2 /= num_attempts;
 
-    matplotlibcpp::plot(attempts, time1);
-    matplotlibcpp::plot(attempts, time2, "r-");
-    matplotlibcpp::xlabel("iteration");
-    matplotlibcpp::ylabel("time (s)");
-    matplotlibcpp::title("Query time trend");
-    matplotlibcpp::save("./LogFiles/queryTimeTrend.png");
-    matplotlibcpp::show();
+    std::vector<std::vector<float>> y{time1, time2};
 
+    InputOutput* io = new InputOutput();
+    io->printPlot(attempts, y, "Query time trend", "iteration", "time(s)", "queryTimeTrend.png");
 
     data[0].push_back(avg1);
     data[1].push_back(avg2);
@@ -139,17 +107,16 @@ void runRXL(std::string graph_location,int num_samples,int num_counters,int num_
 		    lt->weighted_build_RXL();
 		    if(!spg->isEnded()) {
 		        spg->updateForest(max);
-		        if (spg->getNumSamples()< max_numtrees) {
-		            spg->encreaseForest(num_newsamples, labeling);
-		        }
 		    }
+            if (spg->getNumSamples()< max_numtrees) {
+                spg->encreaseForest(num_newsamples, labeling);
+            }
 		    ++builder_;
 		}
 
 		InputOutput* io = new InputOutput();
 		io->printLabelsOnFile(labeling, output_location);
-	
-	
+
 }
 
 
@@ -229,7 +196,6 @@ void testRXL(std::string graph_location,std::vector<int> num_samples,std::vector
 						rounds.push_back(round);
 						round++;
                     }
-				
 				}
 			
 			}

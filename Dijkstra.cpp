@@ -11,8 +11,7 @@ Dijkstra::Dijkstra() {};
 void Dijkstra::runDijkstra(Tree* treeDijkstra, NetworKit::Graph* graph, bool pruned , Labeling* index ) {
 
     boost::heap::fibonacci_heap<heap_dijkstra>* pq = new boost::heap::fibonacci_heap<heap_dijkstra>();
-    boost::heap::fibonacci_heap<heap_dijkstra>::handle_type* handles =
-            new boost::heap::fibonacci_heap<heap_dijkstra>::handle_type[graph->upperNodeIdBound()];
+    boost::heap::fibonacci_heap<heap_dijkstra>::handle_type* handles = new boost::heap::fibonacci_heap<heap_dijkstra>::handle_type[graph->upperNodeIdBound()];
     std::vector<int> distances;
     int size= graph->numberOfNodes();
     distances.resize(size,INF);

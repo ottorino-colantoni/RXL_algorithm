@@ -24,6 +24,7 @@ SamPG::SamPG(int k, int c, NetworKit::Graph* g){
 
 }
 
+
 void SamPG::createForest(){
     Dijkstra* dijkstra;
     for(int i = 0; i<this->num_samples; i++){
@@ -45,6 +46,7 @@ int SamPG::maxDescNode(){
    int roundNode_for_zero=0;
    int max_for_zero=0;
 
+   
    if(this->EndGeneration == false) {
        for (int i = 0; i < counters[0].size(); i++) {
 
@@ -101,7 +103,7 @@ int SamPG::maxDescNode(){
 
 void SamPG::encreaseForest(int Samples, Labeling* index) {
 
-      Dijkstra *dijkstra;
+    Dijkstra *dijkstra;
     for (int i = 0; i < Samples; i++) {
           Tree* new_tree = new Tree(this->random_roots->random());
           this->samplesForest.push_back(new_tree);
@@ -110,7 +112,8 @@ void SamPG::encreaseForest(int Samples, Labeling* index) {
 		  new_tree->computeDescendants(new_tree->getRoot(),this->counters[j % this->num_counters]);
 		  this->totalNodes += new_tree->getRoot()->num_of_descendants + 1;
       }
-      this->num_samples += Samples;
+    this->num_samples += Samples;
+    this->EndGeneration = false;
   }
 
 

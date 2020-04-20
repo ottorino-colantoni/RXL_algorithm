@@ -33,8 +33,6 @@ public:
 
     Tree(int root);
 
-    ~Tree();
-
     /**
      * @return pointer tree's root
      */

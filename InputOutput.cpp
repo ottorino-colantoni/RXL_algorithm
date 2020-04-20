@@ -1,10 +1,22 @@
 
 #include "InputOutput.h"
 #include <string>
+#include <cassert>
 
 
 InputOutput::InputOutput() {}
 
+bool InputOutput::printPlot(std::vector<int> xs, std::vector<std::vector<float>> ys, std::string title, std::string xlabel, std::string ylabel, std::string filename) {
+    for (int i = 0; i < ys.size() ; i++) {
+        assert(xs.size() == ys[i].size());
+        matplotlibcpp::plot(xs, ys[i]);
+    }
+    matplotlibcpp::xlabel(xlabel);
+    matplotlibcpp::ylabel(ylabel);
+    matplotlibcpp::title(title);
+    matplotlibcpp::save(LOGS_LOCATION + filename);
+    matplotlibcpp::close();
+}
 
 bool InputOutput::printLabelsOnFile(Labeling* labels, std::string file_name) {
 
@@ -67,7 +79,7 @@ bool InputOutput::printLogCompare(std::vector<std::vector<float>> data, std::str
     std::ofstream myfile;
     try {
         myfile.open(LOGS_LOCATION + file_name, std::ios::trunc);
-        myfile << graph_name << "\n";
+        myfile <<"Graph name: "<<graph_name << "\n";
         for (int i = 0; i < data.size(); i++) {
             if (i == 0) {
                 myfile << "PLL data" << "\n";
