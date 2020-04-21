@@ -370,6 +370,12 @@ int main(int argc, char** argv){
     else if(exe == 3){
         generateTestsPlots(output_location);
     }
+    else if(exe == 4){
+    	InputOutput* io= new InputOutput();
+
+   		io->changeGraphWeight(graph_location);
+    	
+    }
     
     else{throw std::runtime_error("Bad value (test) : choose 1 for RXL benchmark or 0 to print labels on file");}
 }

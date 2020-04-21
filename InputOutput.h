@@ -12,6 +12,8 @@
 #ifndef INPUTOUTPUT_H
 #define INPUTOUTPUT_H
 #define  LOGS_LOCATION "./LogFiles/"
+#define  UWGRAPHS_LOCATION "./uwGraphs/"
+#define  GRAPHS_LOCATION  "./Graphs/"
 
 class InputOutput {
 
@@ -31,7 +33,7 @@ public:
 
     bool readTestResult(std::vector<std::vector<float>> &data, std::vector<int> &rounds, std::string file_location);
 
-
+	bool changeGraphWeight(std::string graph_location);
     };
 
 

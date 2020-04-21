@@ -2,6 +2,7 @@
 #include "InputOutput.h"
 #include <string>
 #include <cassert>
+#include "mersenneTwister.h"
 
 
 InputOutput::InputOutput() {}
@@ -110,7 +111,7 @@ bool InputOutput::printTestResult(std::vector<std::vector<float>> &data, std::st
         myfile.open(LOGS_LOCATION + file_name, std::ios::app);
         for (int i = 0; i < data[0].size(); i++) {
             for (int j = 0; j < data.size(); j++) {
-                myfile<<data[i][j]<<" ";
+                myfile<<data[j][i]<<" ";
             }
             myfile<<"\n";
         }
@@ -135,14 +136,19 @@ bool InputOutput::readTestResult(std::vector<std::vector<float>> &data, std::vec
         throw std::runtime_error("Error opening File ");
 
     float num_samples, num_counters, num_newsamples, max_numtrees, create_forest_time, tot_time, up_avg_time, encr_avg_time, num_of_labels;
-    ifs.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    
+   
     while(true){
+    
+    	
 
-        ifs >> num_samples >> num_counters >> num_newsamples, max_numtrees, create_forest_time, tot_time, up_avg_time, encr_avg_time, num_of_labels;
+        ifs >> num_samples >> num_counters >> num_newsamples >> max_numtrees >> create_forest_time >> tot_time >> up_avg_time >> encr_avg_time >> num_of_labels;
         ifs.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-        if(ifs.eof())
+        
+        if(ifs.eof()){
             break;
+		}
+       
 
         data[0].push_back(num_samples);
         data[1].push_back(num_counters);
@@ -159,3 +165,63 @@ bool InputOutput::readTestResult(std::vector<std::vector<float>> &data, std::vec
 
     ifs.close();
 }
+
+bool InputOutput::changeGraphWeight(std::string file_name){
+
+		MersenneTwister random;
+		
+		std::ifstream ifs(GRAPHS_LOCATION + file_name);
+		
+		if (!ifs)
+        throw std::runtime_error("Error opening File ");		
+		
+		std::ofstream myfile;
+		try {
+			myfile.open(UWGRAPHS_LOCATION + file_name, std::ios::trunc);
+			}
+		
+		catch (const std::ofstream::failure& e){
+        std::cout<< "Exception opening file";
+        return false;
+    	}
+
+		int directed, node1, node2, weight;
+
+		/*prima riga 1)numero nodi 2)numeroarchi 3)diretto o indiretto 4)pesato o non pesato;*/
+
+		ifs >> node1 >> node2 >> directed >> weight;
+		ifs.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		
+		myfile  << node1 << " " <<node2<< " " <<directed<< " " <<weight <<"\n"; 
+
+		while(true){
+		
+		
+			ifs >> node1 >> node2 >> directed >> weight;
+			ifs.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			
+			if(ifs.eof()){
+		        break;
+			}
+			
+			weight += (random.getRandomInteger() % 100000);
+			
+			myfile <<node1<< " " <<node2<< " " <<directed<< " " <<weight<< "\n";
+		
+		}
+
+	return true;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
