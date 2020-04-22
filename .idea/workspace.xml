@@ -13,31 +13,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a3c6d7e8-64eb-4178-8f51-6a05693d2115" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/caidaComparison-200-20-16-5000/Comparison.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/caidaComparison-200-20-16-5000/queryTimeTrend.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaInitialSamples/createForestTime.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaInitialSamples/encreaseForestTime.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaInitialSamples/numOfLabels.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaInitialSamples/tests.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaInitialSamples/totalTime.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaInitialSamples/updateTime.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaMaxNumSamples/createForestTime.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaMaxNumSamples/encreaseForestTime.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaMaxNumSamples/numOfLabels.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaMaxNumSamples/tests.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaMaxNumSamples/totalTime.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaMaxNumSamples/updateTime.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaSamplesIncrement/createForestTime.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaSamplesIncrement/encreaseForestTime.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaSamplesIncrement/numOfLabels.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaSamplesIncrement/tests.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaSamplesIncrement/totalTime.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaSamplesIncrement/updateTime.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InputOutput.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/InputOutput.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InputOutput.h" beforeDir="false" afterPath="$PROJECT_DIR$/InputOutput.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogFiles/createForestTime.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LogFiles/encreaseForestTime.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LogFiles/numOfLabels.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogFiles/queryTimeTrend.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogFiles/results.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogFiles/test.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LogFiles/totalTime.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LogFiles/updateTime.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RXL" beforeDir="false" afterPath="$PROJECT_DIR$/RXL" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RXL.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/RXL.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphs/caida-big.dat.hist" beforeDir="false" afterPath="$PROJECT_DIR$/Graphs/caida-big.dat.hist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphs/ff-1000.txt.hist" beforeDir="false" afterPath="$PROJECT_DIR$/Graphs/ff-1000.txt.hist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphs/ff-10000.txt.hist" beforeDir="false" afterPath="$PROJECT_DIR$/Graphs/ff-10000.txt.hist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphs/ff-2000.txt.hist" beforeDir="false" afterPath="$PROJECT_DIR$/Graphs/ff-2000.txt.hist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphs/ff-3000.txt.hist" beforeDir="false" afterPath="$PROJECT_DIR$/Graphs/ff-3000.txt.hist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphs/ff-4000.txt.hist" beforeDir="false" afterPath="$PROJECT_DIR$/Graphs/ff-4000.txt.hist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphs/ff-5000.txt.hist" beforeDir="false" afterPath="$PROJECT_DIR$/Graphs/ff-5000.txt.hist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphs/ff-6000.txt.hist" beforeDir="false" afterPath="$PROJECT_DIR$/Graphs/ff-6000.txt.hist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphs/ff-7000.txt.hist" beforeDir="false" afterPath="$PROJECT_DIR$/Graphs/ff-7000.txt.hist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphs/ff-8000.txt.hist" beforeDir="false" afterPath="$PROJECT_DIR$/Graphs/ff-8000.txt.hist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphs/ff-9000.txt.hist" beforeDir="false" afterPath="$PROJECT_DIR$/Graphs/ff-9000.txt.hist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphs/lux_scc1.bgr.hist" beforeDir="false" afterPath="$PROJECT_DIR$/Graphs/lux_scc1.bgr.hist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphs/p2p-Gnutella31.txt.hist" beforeDir="false" afterPath="$PROJECT_DIR$/Graphs/p2p-Gnutella31.txt.hist" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -65,75 +69,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RXL.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="273" column="28" selection-start-line="273" selection-start-column="28" selection-end-line="273" selection-end-column="28" />
+            <state relative-caret-position="15">
+              <caret line="271" column="28" selection-start-line="271" selection-start-column="28" selection-end-line="271" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/matplotlibcpp.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="760">
-              <caret line="1854" column="63" selection-start-line="1854" selection-start-column="58" selection-end-line="1854" selection-end-column="63" />
-              <folding>
-                <element signature="e#397#430#0" expanded="true" />
-                <element signature="e#602#687#0" expanded="true" />
-                <element signature="e#3853#3946#0" expanded="true" />
-                <element signature="e#12908#13160#0" expanded="true" />
-                <element signature="e#27182#27990#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/InputOutput.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-34">
-              <caret line="127" column="119" selection-start-line="127" selection-start-column="119" selection-end-line="127" selection-end-column="119" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LogFiles/tests.txt">
+        <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/caidaComparison-200-20-16-5000/Comparison.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LogFiles/totalTime.png">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/caidaComparison-200-20-16-5000/queryTimeTrend.png">
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LogFiles/updateTime.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LogFiles/createForestTime.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LogFiles/encreaseForestTime.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LogFiles/numOfLabels.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/InputOutput.h">
+        <entry file="file://$PROJECT_DIR$/uwGraphs/ff-10000.txt.hist">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+            <state>
+              <caret column="15" selection-start-column="15" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Makefile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -205,7 +173,6 @@
         <option value="$PROJECT_DIR$/ciao.txt" />
         <option value="$PROJECT_DIR$/tobedefined.txt" />
         <option value="$PROJECT_DIR$/matplotlibcpp.h" />
-        <option value="$PROJECT_DIR$/Makefile" />
         <option value="$PROJECT_DIR$/Dijkstra.cpp" />
         <option value="$PROJECT_DIR$/Labeling.cpp" />
         <option value="$PROJECT_DIR$/Tree.cpp" />
@@ -216,6 +183,8 @@
         <option value="$PROJECT_DIR$/InputOutput.h" />
         <option value="$PROJECT_DIR$/InputOutput.cpp" />
         <option value="$PROJECT_DIR$/RXL.cpp" />
+        <option value="$PROJECT_DIR$/Makefile" />
+        <option value="$PROJECT_DIR$/LogFiles/tests.txt" />
       </list>
     </option>
   </component>
@@ -238,11 +207,6 @@
               <item name="RXL_algorithm" type="b2602c69:ProjectViewProjectNode" />
               <item name="RXL_algorithm" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="RXL_algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RXL_algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="LogFiles" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -260,7 +224,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Graphs" />
+      <recent name="$PROJECT_DIR$/LogFiles/testCaida" />
+      <recent name="$PROJECT_DIR$/LogFiles/caidaComparison-200-20-16-5000" />
+      <recent name="$PROJECT_DIR$/LogFiles/testFilesCaidaMaxNumSamples" />
+      <recent name="$PROJECT_DIR$/LogFiles/testFilesCaidaSamplesIncrement" />
+      <recent name="$PROJECT_DIR$/LogFiles/testFilesCaidaInitialSamples" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -318,18 +286,19 @@
       <workItem from="1587304876619" duration="232000" />
       <workItem from="1587305125904" duration="11483000" />
       <workItem from="1587375145264" duration="6204000" />
-      <workItem from="1587395229643" duration="5840000" />
+      <workItem from="1587395229643" duration="5990000" />
+      <workItem from="1587469393420" duration="1799000" />
+      <workItem from="1587558278029" duration="6820000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="240268000" />
+    <option name="totallyTimeSpent" value="249037000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="70" y="27" width="1850" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49917355" visible="true" weight="0.15833333" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49917355" visible="true" weight="0.16222222" />
       <window_info id="Structure" order="1" sideWeight="0.5008264" side_tool="true" weight="0.27666667" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -341,7 +310,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.33660132" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.33442265" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info active="true" anchor="bottom" id="Messages" order="11" visible="true" weight="0.32897604" />
       <window_info anchor="bottom" id="CMake" order="12" weight="0.32897604" />
@@ -379,64 +348,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Auxiliary.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="1352" column="57" selection-start-line="1352" selection-start-column="57" selection-end-line="1352" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/caida-big.dat.hist" />
-    <entry file="file://$PROJECT_DIR$/openmp_dir.sh">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/results.txt" />
-    <entry file="file://$PROJECT_DIR$/BestRandom.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BestRandom.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/completeHL.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3774">
-          <caret line="47" column="56" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UpdateData.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/updateTime.png" />
-    <entry file="file://$PROJECT_DIR$/totaltime.png" />
-    <entry file="file://$PROJECT_DIR$/mytimer.h">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="137" selection-start-line="7" selection-start-column="125" selection-end-line="7" selection-end-column="137" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/createForestTime.png" />
-    <entry file="file://$PROJECT_DIR$/totalTime.png" />
-    <entry file="file://$PROJECT_DIR$/encreaseForestAVGtime.png" />
-    <entry file="file://$PROJECT_DIR$/Dijkstra.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/log.txt" />
     <entry file="file://$PROJECT_DIR$/CustomDataTypes.h">
       <provider selected="true" editor-type-id="text-editor">
@@ -497,12 +408,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Graphs/directed.hist">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LogFiles/queryTimeTrend.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Graphs/directed.hist" />
     <entry file="file://$PROJECT_DIR$/Graphs/ff-6000.txt.hist">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -554,16 +460,24 @@
     <entry file="file://$PROJECT_DIR$/Graphs/ff-5000.txt.hist">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/LogFiles/results.txt" />
     <entry file="file://$PROJECT_DIR$/InputOutput.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+        <state relative-caret-position="495">
+          <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/InputOutput.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="128" column="119" selection-start-line="128" selection-start-column="119" selection-end-line="128" selection-end-column="119" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/matplotlibcpp.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
+        <state relative-caret-position="528">
           <caret line="1854" column="63" selection-start-line="1854" selection-start-column="58" selection-end-line="1854" selection-end-column="63" />
           <folding>
             <element signature="e#397#430#0" expanded="true" />
@@ -575,44 +489,95 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LogFiles/results.txt">
+    <entry file="file://$PROJECT_DIR$/LogFiles/test.txt" />
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaInitialSamples/encreaseForestTime.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaInitialSamples/numOfLabels.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaInitialSamples/totalTime.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaInitialSamples/updateTime.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaInitialSamples/createForestTime.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaSamplesIncrement/encreaseForestTime.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaSamplesIncrement/totalTime.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaSamplesIncrement/updateTime.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaInitialSamples/tests.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="120">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LogFiles/createForestTime.png">
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaSamplesIncrement/createForestTime.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/LogFiles/encreaseForestTime.png">
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaSamplesIncrement/numOfLabels.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/LogFiles/tests.txt">
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaSamplesIncrement/tests.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="10" lean-forward="true" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaMaxNumSamples/createForestTime.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaMaxNumSamples/encreaseForestTime.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaMaxNumSamples/totalTime.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaMaxNumSamples/updateTime.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaMaxNumSamples/tests.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/LogFiles/updateTime.png">
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaMaxNumSamples/numOfLabels.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/LogFiles/numOfLabels.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LogFiles/totalTime.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/InputOutput.cpp">
+    <entry file="file://$PROJECT_DIR$/Makefile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34">
-          <caret line="127" column="119" selection-start-line="127" selection-start-column="119" selection-end-line="127" selection-end-column="119" />
+        <state relative-caret-position="285">
+          <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RXL.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="273" column="28" selection-start-line="273" selection-start-column="28" selection-end-line="273" selection-end-column="28" />
+        <state relative-caret-position="15">
+          <caret line="271" column="28" selection-start-line="271" selection-start-column="28" selection-end-line="271" selection-end-column="28" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/caidaComparison-200-20-16-5000/Comparison.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/uwGraphs/ff-10000.txt.hist">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="15" selection-start-column="15" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LogFiles/testCaida/caidaComparison-200-20-16-5000/queryTimeTrend.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
   </component>
 </project>
