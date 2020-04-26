@@ -5,10 +5,11 @@ VALGRIND = -g -DNDEBUG
 
 TARGET_A = RXL
 
-OPTIONS = -lnetworkit -lboost_serialization -lboost_program_options -lboost_system -lboost_filesystem -fopenmp -lboost_timer -lpython3.7m
-INCLUDEPATH = /home/f4b3r/networkit/include -I/usr/include/valgrind -I/usr/include/python3.7m/
-PATHLIB = /home/f4b3r/lib/python3.7//include/
+OPTIONS = -lnetworkit -lboost_serialization -lboost_program_options -lboost_system -lboost_filesystem -fopenmp -lboost_timer -lpython3.8
+INCLUDEPATH = /usr/local/include/ -I/usr/include/valgrind -I/usr/include/python3.8 -I//usr/local/lib/python3.8/dist-packages/numpy/core/include/
+PATHLIB = /usr/local/include/
 SOURCES_A = $(TARGET_A).cpp Auxiliary.cpp  Labeling.cpp Labeling_Tools.cpp UpdateData.cpp LabelEntry.cpp Tree.cpp SamPG.cpp Dijkstra.cpp BestRandom.cpp InputOutput.cpp
+
 
 debug:
 	$(CXX) $(DBG) -o $(TARGET_A) -I$(INCLUDEPATH) -L$(PATHLIB) $(SOURCES_A) $(OPTIONS)

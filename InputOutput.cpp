@@ -213,6 +213,52 @@ bool InputOutput::changeGraphWeight(std::string file_name){
 	return true;
 }
 
+bool InputOutput::networkRepoGraph(std::string file_name){
+
+    MersenneTwister random;
+
+    std::ifstream ifs(GRAPHS_LOCATION + file_name);
+
+    if (!ifs)
+        throw std::runtime_error("Error opening File ");
+
+    std::ofstream myfile;
+    try {
+        myfile.open(UWGRAPHS_LOCATION + file_name, std::ios::trunc);
+    }
+
+    catch (const std::ofstream::failure& e){
+        std::cout<< "Exception opening file";
+        return false;
+    }
+
+    int directed, node1, node2, weight;
+
+    /*prima riga 1)numero nodi 2)numeroarchi 3)diretto o indiretto 4)pesato o non pesato;*/
+
+    ifs >> node1 >> node2 >> weight >> directed;
+    ifs.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    myfile  << node1 << " " <<node2<< " " <<weight<< " " <<directed <<"\n";
+
+    while(true){
+
+
+        ifs >> node1 >> node2;
+        ifs.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+        if(ifs.eof()){
+            break;
+        }
+
+        weight = (random.getRandomInteger() % 100000);
+
+        myfile <<directed<< " " <<node1-1<< " " <<node2-1<< " " <<weight<< "\n";
+
+    }
+
+    return true;
+}
 
 
 

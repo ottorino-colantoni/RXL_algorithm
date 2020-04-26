@@ -36,6 +36,8 @@ void plotResult(std::vector<std::vector<float>> data, std::vector<int> rounds){
 
 void randomQueryTest(Labeling *labels1, Labeling *labels2, int graph_size, std::vector<std::vector<float>> &data){
 
+    std::cout<<"[INFO ]: Executing random query test"<<"\n";
+
     mytimer timer;
     float avg1=0;
     float avg2=0;
@@ -76,7 +78,7 @@ void randomQueryTest(Labeling *labels1, Labeling *labels2, int graph_size, std::
     std::vector<std::vector<float>> y{time1, time2};
 
     InputOutput* io = new InputOutput();
-    io->printPlot(attempts, y, "Query time trend", "iteration", "time(s)", "queryTimeTrend.png");
+    io->printPlot(attempts, y, "Query time trend", "iteration", "time(s)", "queryTimeTrendMiddle.png");
 
     data[0].push_back(avg1);
     data[1].push_back(avg2);
@@ -89,6 +91,7 @@ void runRXL(std::string graph_location,int num_samples,int num_counters,int num_
 
 		NetworKit::Graph *graph;
 		Auxiliary::read(graph_location, false, &graph);
+		std::cout<<"[INFO ]: creating samples forest"<<"\n";
 		SamPG *spg = new SamPG(num_samples, num_counters, graph);
 		spg->createForest();
 		int max;
@@ -176,18 +179,17 @@ void testRXL(std::string graph_location,std::vector<int> num_samples,std::vector
 							lt->add_node_to_keeper(max, i);
 							lt->weighted_build_RXL();
 							if(!spg->isEnded()) {
-								timerup.restart();
-								spg->updateForest(max);
-								avgup++;
-								avgupdate+=timerup.elapsed();
-								if (spg->getNumSamples()< max_numtrees[k]) {
-									timerup.restart();
-									spg->encreaseForest(num_newsamples[z], labeling);
-									avgencrease+= timerup.elapsed();
-									avgen++;
-								}
-								
-							}
+                                timerup.restart();
+                                spg->updateForest(max);
+                                avgup++;
+                                avgupdate += timerup.elapsed();
+                            }
+                            if (spg->getNumSamples()< max_numtrees[k]) {
+                                timerup.restart();
+                                spg->encreaseForest(num_newsamples[z], labeling);
+                                avgencrease+= timerup.elapsed();
+                                avgen++;
+                            }
 						}
 						data[5].push_back(timer.elapsed());
 						data[6].push_back(avgupdate/avgup);
@@ -226,6 +228,7 @@ void compare(std::string graph_location,int num_samples,int num_counters,int num
      */
 
     //Creating Labels with PLL
+    std::cout<<"[INFO ]: executing PLL"<<"\n";
     timer.restart();
     Labeling *PLLlabels = new Labeling(graph->isDirected());
     std::pair <std::vector<custom_node>, std::vector<custom_node>> keeperPLL;
@@ -236,6 +239,8 @@ void compare(std::string graph_location,int num_samples,int num_counters,int num
 
 
     //Creating Labels with RXL
+    std::cout<<"[INFO ]: executing RXL"<<"\n";
+    std::cout<<"[INFO ]: creating samples forest"<<"\n";
     timer.restart();
     SamPG *spg = new SamPG(num_samples, num_counters, graph);
     spg->createForest();
@@ -245,16 +250,21 @@ void compare(std::string graph_location,int num_samples,int num_counters,int num
     Labeling *RXLlabels = new Labeling(graph->isDirected());
     Labeling_Tools *lt = new Labeling_Tools(graph, RXLlabels, keeperRXL);
 
+    ProgressStream builder_(graph->numberOfNodes());
+    builder_.label() << "Building WEIGHTED UNDIRECTED labeling for " <<graph->numberOfNodes()<< " vertices";
+
     for (int i = 0; i < graph->numberOfNodes(); i++) {
         max = spg->maxDescNode();
         lt->add_node_to_keeper(max, i);
         lt->weighted_build_RXL();
         if(!spg->isEnded()) {
             spg->updateForest(max);
-            if (spg->getNumSamples()< max_numtrees) {
-                spg->encreaseForest(num_newsamples, RXLlabels);
-            }
         }
+        if (spg->getNumSamples()< max_numtrees) {
+            spg->encreaseForest(num_newsamples, RXLlabels);
+        }
+
+        ++builder_;
     }
     data[1].push_back(timer.elapsed());
     data[0].push_back(PLLlabels->getNumberOfLabelEntries());
@@ -328,30 +338,34 @@ int main(int argc, char** argv){
     exe = vm["exe"].as<int>();
 
     if(exe != 3) {
-        for (int i = 0; i < num_samples.size(); i++) {
-            if (num_samples[i] <= 0) {
-                std::cout << desc << "\n";
-                throw std::runtime_error("Number of samples must be greater than 0");
-            }
-        }
 
         if (graph_location == "") {
             std::cout << desc << "\n";
             throw std::runtime_error("Wrong graph_location");
         }
 
-        for (int i = 0; i < num_counters.size(); i++) {
-            if (num_counters[i] <= 0 || num_counters > num_samples) {
-                std::cout << desc << "\n";
-                throw std::runtime_error("Number of counters must fall in [1, num_samples-1]");
+        if (exe != 4) {
+            for (int i = 0; i < num_samples.size(); i++) {
+                if (num_samples[i] <= 0) {
+                    std::cout << desc << "\n";
+                    throw std::runtime_error("Number of samples must be greater than 0");
+                }
             }
-        }
 
-        for (int i = 0; i < max_numtrees.size(); i++) {
-            if (max_numtrees[i] < 0) {
-                std::cout << desc << "\n";
-                throw std::runtime_error("Max number of trees must fall in [1, graph size]");
+            for (int i = 0; i < num_counters.size(); i++) {
+                if (num_counters[i] <= 0 || num_counters > num_samples) {
+                    std::cout << desc << "\n";
+                    throw std::runtime_error("Number of counters must fall in [1, num_samples-1]");
+                }
             }
+
+            for (int i = 0; i < max_numtrees.size(); i++) {
+                if (max_numtrees[i] < 0) {
+                    std::cout << desc << "\n";
+                    throw std::runtime_error("Max number of trees must fall in [1, graph size]");
+                }
+            }
+
         }
     }
 
@@ -373,7 +387,7 @@ int main(int argc, char** argv){
     else if(exe == 4){
     	InputOutput* io= new InputOutput();
 
-   		io->changeGraphWeight(graph_location);
+   		io->networkRepoGraph(graph_location);
     	
     }
     

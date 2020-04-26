@@ -1,0 +1,7 @@
+Graph name: uwGraphs/socfb-Simmons81.mtx
+PLL data
+Preprocessing time: 2.05655  Number of Labels: 72833  Query average time (sec): 2.69527e-06  Correctness percentage: 100
+RXL data
+Preprocessing time: 4.16792  Number of Labels: 49588  Query average time (sec): 1.89597e-06  Correctness percentage: 100
+
+k 20 c 16 n 5 m 150

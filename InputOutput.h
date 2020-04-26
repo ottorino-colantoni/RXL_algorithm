@@ -34,7 +34,9 @@ public:
     bool readTestResult(std::vector<std::vector<float>> &data, std::vector<int> &rounds, std::string file_location);
 
 	bool changeGraphWeight(std::string graph_location);
-    };
+
+    bool networkRepoGraph(std::string file_name);
+};
 
 
 #endif //RXL_ALGORITHM_INPUTOUTPUT_H
