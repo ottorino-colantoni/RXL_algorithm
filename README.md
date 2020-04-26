@@ -1,5 +1,5 @@
 # Descrizione
-Implementazione struttura dati 2-hop cover tramite tecnica RXL utilizzando l'algoritmo di ordiamento SamPG 
+Implementazione struttura dati ```2-hop cover``` tramite tecnica ```RXL``` utilizzando l'algoritmo di ordinamento ```SamPG``` 
 
 # Librerie necessarie
  - libboost;
