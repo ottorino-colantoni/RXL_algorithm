@@ -1,9 +1,0 @@
-Graph name: uwGraphs/socfb-Middlebury45.mtx
-PLL data
-Preprocessing time: 14.9853  Number of Labels: 331877  Query average time (sec): 5.12844e-06  Correctness percentage: 100
-RXL data
-Preprocessing time: 54.5725  Number of Labels: 208384  Query average time (sec): 3.56793e-06  Correctness percentage: 100
-
-k 20 c 16 n 5 m 500
-
-

@@ -1,5 +1,0 @@
-Graph name: Graphs/caida-big.dat.hist
-PLL data
-Preprocessing time: 11.5273  Number of Labels: 1.4078e+06  Query average time (sec): 2.59475e-06  Correctness percentage: 100
-RXL data
-Preprocessing time: 159.532  Number of Labels: 496264  Query average time (sec): 1.59176e-06  Correctness percentage: 100

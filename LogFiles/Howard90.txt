@@ -1,7 +1,0 @@
-Graph name: uwGraphs/socfb-Howard90.mtx
-PLL data
-Preprocessing time: 21.7256  Number of Labels: 345994  Query average time (sec): 5.80977e-06  Correctness percentage: 100
-RXL data
-Preprocessing time: 93.2495  Number of Labels: 232958  Query average time (sec): 4.385e-06  Correctness percentage: 100
-
-k 80 c 16 n 10 m 700

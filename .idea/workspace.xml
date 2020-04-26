@@ -31,10 +31,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a3c6d7e8-64eb-4178-8f51-6a05693d2115" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Relazione/RelazioneRXLDAscenzoColantoni.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Graphs/caida-big.dat.hist" beforeDir="false" afterPath="$PROJECT_DIR$/uwGraphs/caida-big.dat.hist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InputOutput.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/InputOutput.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InputOutput.h" beforeDir="false" afterPath="$PROJECT_DIR$/InputOutput.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogFiles/Howard90.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogFiles/Middlebury45.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogFiles/Simmons81.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogFiles/ff10000.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogFiles/queryTimeTrendHoward90.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogFiles/queryTimeTrendMiddle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogFiles/queryTimeTrendSimmons.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogFiles/queryTimeTrendff10000.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LogFiles/testCaida/caidaComparison-200-20-16-5000/Comparison.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LogFiles/testCaida/caidaComparison-200-20-16-5000/queryTimeTrend.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaInitialSamples/createForestTime.png" beforeDir="false" />
@@ -55,10 +61,6 @@
       <change beforePath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaSamplesIncrement/tests.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaSamplesIncrement/totalTime.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LogFiles/testCaida/testFilesCaidaSamplesIncrement/updateTime.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RXL" beforeDir="false" afterPath="$PROJECT_DIR$/RXL" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RXL.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/RXL.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +175,7 @@
       <workItem from="1587834501322" duration="2692000" />
       <workItem from="1587850156233" duration="26000" />
       <workItem from="1587851961304" duration="11093000" />
-      <workItem from="1587902807538" duration="2784000" />
+      <workItem from="1587902807538" duration="4837000" />
     </task>
     <servers />
   </component>

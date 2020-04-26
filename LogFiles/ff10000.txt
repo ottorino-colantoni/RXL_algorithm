@@ -1,6 +1,0 @@
-Graph name: uwGraphs/ff-10000.txt.hist
-PLL data
-Preprocessing time: 3.01268  Number of Labels: 306272  Query average time (sec): 2.15696e-06  Correctness percentage: 100
-RXL data
-Preprocessing time: 27.4468  Number of Labels: 253927  Query average time (sec): 1.92892e-06  Correctness percentage: 100
-60 16 10 1500 3.2201 26.9912 0.0041376 0.0567134 252744 
