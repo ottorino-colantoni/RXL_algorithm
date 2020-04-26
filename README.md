@@ -37,3 +37,4 @@ Implementazione struttura dati ```2-hop cover``` tramite tecnica ```RXL``` utili
 - ```./RXL -g "Graph.hist" -e 4``` → converte il grafo nel file "Graph.hist" nel formato richiesto (solo per grafi non diretti e pesati di http://networkrepository.com).   
                                       
 
+N.B. In generale tutti i plot e file di log vengono salvati nella cartella ```LogFiles ```.
